@@ -1,0 +1,13 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "title": "przykladowy task",
+            "description": "super fajny opis taska",
+            "finishDate": 1632250086335,
+            "stage": "IN_PROGRESS",
+            "category": "category1"
+        }
+    ],
+    "categories": ["category1", "category2", "category3"]
+}

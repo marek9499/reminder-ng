@@ -1,0 +1,16 @@
+<header class="heading">
+    <div class="heading__date">
+        <fa-icon [icon]="faCalendar" size="2x"></fa-icon>
+        <p class="heading__date">25 lipiec, 2021</p>
+    </div>
+
+    <div class="heading__input">
+        <form [formGroup]="searchForm">
+            <app-input
+                formControlName="searchTodoName"
+            ></app-input> 
+        </form>
+
+        <pre>{{ searchForm.controls['searchTodoName'].touched }}</pre>
+    </div>
+</header>
