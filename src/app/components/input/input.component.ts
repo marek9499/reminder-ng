@@ -1,5 +1,6 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-input',
@@ -14,6 +15,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class InputComponent implements ControlValueAccessor {
+  @Input() icon: IconDefinition;
+  @Input() placeholder: string;
   public value: string;
   public onChange: (value: any) => void;
   public onTouched: () => void;

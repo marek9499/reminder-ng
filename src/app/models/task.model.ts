@@ -5,4 +5,5 @@ export interface Task {
     finishDate: string;
     stage: string;
     category: string;
+    updatedAt: number;
 }

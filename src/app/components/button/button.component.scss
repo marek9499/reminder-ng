@@ -1,0 +1,34 @@
+@import '../../../assets/breakpoints.scss';
+
+:host(.move-to-right) {
+    margin-left: auto;
+}
+
+.button {
+    border: none;
+    height: 45px;
+    border-radius: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+
+    &.blue {
+        color: white;
+        background-color: #4d84fe;
+        &:hover {
+            background-color: #3169e4;
+        }
+    }
+
+    &.hiddenMobile {
+        display: none;
+        @media only screen and (min-width: $medium) {
+            display: initial;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

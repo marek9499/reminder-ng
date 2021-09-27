@@ -1,0 +1,31 @@
+input {
+    border: none;
+    height: 45px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    color: #a3a2a2;
+    font-size: 17px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    box-sizing: border-box;
+    width: 100%;
+    &:active, &:focus {
+        outline: none;
+    }
+
+    &.iconspace {
+        padding-left: 40px;
+    }
+}
+
+.wrapper {
+    position: relative;
+}
+
+fa-icon {
+    position: absolute;
+    left: 15px;
+    transform: translateY(-50%);
+    top: 50%;
+    color: #a3a2a2;
+}
