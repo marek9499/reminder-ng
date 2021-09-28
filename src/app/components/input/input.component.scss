@@ -1,6 +1,9 @@
-input {
+:host {
+    position: relative;
+}
+
+.field {
     border: none;
-    height: 45px;
     background-color: #f7f7f7;
     border-radius: 5px;
     color: #a3a2a2;
@@ -9,17 +12,36 @@ input {
     font-weight: 300;
     box-sizing: border-box;
     width: 100%;
+    padding-left: 10px;
     &:active, &:focus {
         outline: none;
+    }
+
+    &.input {
+        height: 45px;
+    }
+
+    &.textarea {
+        height: 90px;
     }
 
     &.iconspace {
         padding-left: 40px;
     }
+
+    &__label {
+        font-size: 22px;
+        font-weight: 400;
+        margin-bottom: 5px;
+        display: inline-block;
+        letter-spacing: -1px;
+    }
 }
 
-.wrapper {
-    position: relative;
+.form {
+    &-group {
+        margin-bottom: 20px;
+    }
 }
 
 fa-icon {

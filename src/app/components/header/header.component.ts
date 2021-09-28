@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconDefinition, faCalendarDay, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SharedService } from 'src/app/services/shared.service';
+import { SidebarService } from 'src/app/services/sidebar.service';
+import { NgxSmartModalService } from 'ngx-smart-modal';
+import { Modal } from 'src/app/enums/modal.enum';
 
 @Component({
   selector: 'app-header',
@@ -13,14 +15,19 @@ export class HeaderComponent implements OnInit {
   public faSearch: IconDefinition = faSearch;
   public searchForm: FormGroup;
   public currentDate: Date = new Date();
+  public sidebarState: boolean = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly sidebarService: SharedService
-    ) { }
+    private readonly sidebarService: SidebarService,
+    private readonly modal: NgxSmartModalService
+  ) { }
 
   ngOnInit(): void {
     this.prepareSearchForm();
+    setTimeout(() => {
+      this.modal.getModal(Modal.NewTask).open();
+    }, 0);
   }
 
   public prepareSearchForm(): void {
@@ -34,6 +41,11 @@ export class HeaderComponent implements OnInit {
   }
 
   public runSidebar(): void {
-    this.sidebarService.isSidebarActive.next(true);
+    this.sidebarState = !this.sidebarState;
+    this.sidebarService.changeState({ state: this.sidebarState });
+  }
+
+  public createNewTask(): void {
+    this.modal.getModal(Modal.NewTask).open();
   }
 }

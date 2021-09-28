@@ -15,8 +15,13 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
   ]
 })
 export class InputComponent implements ControlValueAccessor {
+  @Input() type: string;
   @Input() icon: IconDefinition;
   @Input() placeholder: string;
+  @Input() label: string;
+  @Input() identifier: string;
+  @Input() removeCSSFormGroup: boolean = false;
+  
   public value: string;
   public onChange: (value: any) => void;
   public onTouched: () => void;

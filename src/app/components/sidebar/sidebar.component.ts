@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconDefinition, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { SharedService } from 'src/app/services/shared.service';
-import { take } from 'rxjs/operators';
+import { SidebarService } from 'src/app/services/sidebar.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,14 +10,12 @@ import { take } from 'rxjs/operators';
 })
 export class SidebarComponent implements OnInit {
   public checkIcon: IconDefinition = faCheckCircle;
-  public sidebarActive: boolean = false;
+  public isActive$: Observable<boolean>;
 
-  constructor(private readonly sidebarService: SharedService) { }
+  constructor(private readonly sidebarService: SidebarService) { }
 
   ngOnInit(): void {
-    this.sidebarService.isSidebarActive.subscribe(message => {
-      console.log('siemka!');
-    })
+    this.isActive$ = this.sidebarService.getSidebarState();
   }
 
 }

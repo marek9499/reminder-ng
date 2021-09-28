@@ -6,16 +6,19 @@
 
     <form [formGroup]="searchForm" class="searchform">
         <div class="mobilemenu" (click)="runSidebar()">
+            <input type="checkbox" class="mobilemenu__input" />
             <span></span>
             <span></span>
             <span></span>
         </div>
         <app-input
+            type="input"
             formControlName="searchTodoName"
             placeholder="Enter task's details..."
+            [removeCSSFormGroup]="true"
             [icon]="faSearch"
         ></app-input>
         <app-button theme="blue" (onClick)="searchForTasks()" [hiddenMobile]="true">Search</app-button>
-        <app-button theme="blue" class="move-to-right">New task</app-button>
+        <app-button theme="blue" (onClick)="createNewTask()" class="move-to-right">New task</app-button>
     </form>
 </header>

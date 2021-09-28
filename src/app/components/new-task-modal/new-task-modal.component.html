@@ -1,0 +1,22 @@
+<ngx-smart-modal identifier="{{ modalIdentifier }}">
+    <div class="container modal">
+        <p class="modal__title">Add new task</p>
+        <form [formGroup]="addNewTask">
+            <app-input
+                type="input"
+                formControlName="name"
+                label="Task name"
+                identifier="taskname"
+                placeholder="Enter task's new name...">
+            </app-input>
+            <app-input
+                type="textarea"
+                formControlName="description"
+                label="Description"
+                identifier="description"
+                placeholder="Enter task's description...">
+            </app-input>
+            <input type="date">
+        </form>
+    </div>
+</ngx-smart-modal>

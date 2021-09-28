@@ -37,7 +37,8 @@
 	-webkit-user-select: none;
 	user-select: none;
 	display: block;
-    padding-right: 20px;
+	padding-right: 20px;
+	z-index: 2;
 	&__input {
 		display: block;
 		width: 40px;
@@ -47,14 +48,19 @@
 		left: -5px;
 		cursor: pointer;
 		opacity: 0;
-		z-index: 1;
+		z-index: 2;
 		-webkit-touch-callout: none;
 		&:checked ~ span {
 			opacity: 1;
 			background: #232323;
+			transform: rotate(-48deg) translate(-2px, -2px)
 		}
-		&:checked ~ div.sidebar {
-			transform: translateX(0);
+		&:checked ~ span:nth-last-child(2) {
+			opacity: 0;
+		}
+		&:checked ~ span:nth-last-child(3) {
+			opacity: 1;
+			transform: rotate(45deg);
 		}
 	}
 
@@ -80,7 +86,8 @@
 		}
 	}
 
-    @media only screen and (min-width: $medium) {
-        display: none;
-    }
+	@media only screen and (min-width: $medium) {
+		display: none;
+	}
 }
+

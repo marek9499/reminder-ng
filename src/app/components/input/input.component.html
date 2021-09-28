@@ -1,13 +1,35 @@
-<div class="wrapper">
-    <input
-        type="text"
-        (blur)="onTouched()"
-        (input)="changedInput($event)"
-        [value]="value"
-        [disabled]="disabled"
-        [placeholder]="placeholder"
-        [ngClass]="{
-            'iconspace': icon != null
-        }"/>
-    <fa-icon [icon]="icon"></fa-icon>
+<div [ngClass]="{ 'form-group': removeCSSFormGroup === false }">
+    <label *ngIf="label" [for]="identifier" class="field__label">{{ label }}</label>
+
+    <ng-container *ngIf="type === 'input'">
+        <input
+            type="text"
+            (blur)="onTouched()"
+            (input)="changedInput($event)"
+            [value]="value"
+            [disabled]="disabled"
+            [id]="identifier ? identifier : ''"
+            [placeholder]="placeholder"
+            [ngClass]="{
+                'iconspace': icon != null,
+                'field': true,
+                'input': true
+            }"/>
+        <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
+    </ng-container>
+
+    <ng-container *ngIf="type === 'textarea'">
+        <textarea
+            (blur)="onTouched()"
+            (input)="changedInput($event)"
+            [value]="value"
+            [disabled]="disabled"
+            [id]="identifier ? identifier : ''"
+            [placeholder]="placeholder"
+            rows="30"
+            [ngClass]="{
+                'field': true,
+                'textarea': true
+            }"></textarea>
+    </ng-container>
 </div>

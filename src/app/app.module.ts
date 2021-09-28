@@ -9,11 +9,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InputComponent } from './components/input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import { LOCALE_ID } from '@angular/core';
 import { MainComponent } from './content/main/main.component';
+import { NewTaskModalComponent } from './components/new-task-modal/new-task-modal.component';
 registerLocaleData(localePl, 'pl');
 
 @NgModule({
@@ -23,13 +25,15 @@ registerLocaleData(localePl, 'pl');
     HeaderComponent,
     InputComponent,
     ButtonComponent,
-    MainComponent
+    MainComponent,
+    NewTaskModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSmartModalModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl" }],
   bootstrap: [AppComponent]
