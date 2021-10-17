@@ -12,12 +12,22 @@
     padding-right: 30px;
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
+    margin-right: 10px;
 
     &.blue {
         color: white;
         background-color: #4d84fe;
         &:hover {
             background-color: #3169e4;
+        }
+    }
+
+    &.white {
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+        &:hover {
+            background-color: rgb(221, 221, 221);
         }
     }
 

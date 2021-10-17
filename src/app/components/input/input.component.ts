@@ -18,9 +18,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() type: string;
   @Input() icon: IconDefinition;
   @Input() placeholder: string;
-  @Input() label: string;
   @Input() identifier: string;
-  @Input() removeCSSFormGroup: boolean = false;
   
   public value: string;
   public onChange: (value: any) => void;
@@ -31,15 +29,19 @@ export class InputComponent implements ControlValueAccessor {
     const value: string = (<HTMLInputElement>event.target).value;
     this.onChange(value);
   }
+  
   public writeValue(value: string): void {
     this.value = value;
   }
+
   public registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   public registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
+
   public setDisabledState?(isBoolean: false): void {
     this.disabled = isBoolean;
   }

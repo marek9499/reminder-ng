@@ -10,6 +10,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class NewTaskModalComponent implements OnInit {
   public modalIdentifier: string = Modal.NewTask;
   public addNewTask: FormGroup;
+  foods = [
+    {value: 'steak', viewValue: 'Steak'},
+    {value: 'pizza', viewValue: 'Pizza'},
+    {value: 'tacos', viewValue: 'Tacos'}
+  ];
 
   constructor(
     private readonly formBuilder: FormBuilder
@@ -21,9 +26,18 @@ export class NewTaskModalComponent implements OnInit {
 
   public prepareNewTaskForm(): void {
     this.addNewTask = this.formBuilder.group({
-      name: ['', Validators.nullValidator],
-      description: ['', Validators.nullValidator]
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      description: ['', [Validators.required, Validators.minLength(5)]],
+      finish: ['', Validators.required],
+      category: ['', Validators.required]
     });
   }
 
+  public createNewTask(): void {
+    
+  }
+
+  public clearNewTaskForm(): void {
+    this.addNewTask.reset();
+  }
 }

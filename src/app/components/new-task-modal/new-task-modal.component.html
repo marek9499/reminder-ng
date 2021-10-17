@@ -2,21 +2,66 @@
     <div class="container modal">
         <p class="modal__title">Add new task</p>
         <form [formGroup]="addNewTask">
-            <app-input
-                type="input"
-                formControlName="name"
-                label="Task name"
-                identifier="taskname"
-                placeholder="Enter task's new name...">
-            </app-input>
-            <app-input
-                type="textarea"
-                formControlName="description"
-                label="Description"
-                identifier="description"
-                placeholder="Enter task's description...">
-            </app-input>
-            <input type="date">
+            <form-group>
+                <form-label
+                    for="taskname"
+                    [control]="addNewTask.get('name')"    
+                >
+                    Task name
+                </form-label>
+                <app-input
+                    type="input"
+                    formControlName="name"
+                    identifier="taskname"
+                    placeholder="Enter task's new name...">
+                </app-input>
+            </form-group>
+            
+            <form-group>
+                <form-label
+                    for="description"
+                    [control]="addNewTask.get('description')"
+                >
+                    Description
+                </form-label>
+                <app-input
+                    type="textarea"
+                    formControlName="description"
+                    identifier="description"
+                    placeholder="Enter task's description...">
+                </app-input>
+            </form-group>
+            
+            <form-group>
+                <form-col>
+                    <ng-container id="modal__category">
+                        <form-label>End date</form-label>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose end date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="finish">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </ng-container>
+                    <ng-container id="modal__date">
+                        <form-label>Category</form-label>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose category</mat-label>
+                            <mat-select formControlName="category">
+                                <mat-option *ngFor="let food of foods" [value]="food.value">
+                                {{food.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <small class="modal__small">Can't find? <span class="modal__newcategory">Create a new one!</span></small>
+                    </ng-container>
+                </form-col>
+            </form-group>
+
+            <div class="modal__footer">
+                <app-button theme="white" (onClick)="clearNewTaskForm()">Clear</app-button>
+                <app-button theme="blue" (onClick)="createNewTask()">Create</app-button>
+            </div>
         </form>
     </div>
 </ngx-smart-modal>

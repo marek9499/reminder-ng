@@ -23,18 +23,11 @@
 
     &.textarea {
         height: 90px;
+        padding-top: 5px;
     }
 
     &.iconspace {
         padding-left: 40px;
-    }
-
-    &__label {
-        font-size: 22px;
-        font-weight: 400;
-        margin-bottom: 5px;
-        display: inline-block;
-        letter-spacing: -1px;
     }
 }
 

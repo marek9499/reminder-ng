@@ -1,17 +1,50 @@
 :host {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
+	font-family: "Poppins", sans-serif;
+	font-weight: 300;
 }
 
 .container {
-    margin-top: 25px;
+	margin-top: 25px;
 }
 
 .modal {
-    &__title {
-        font-size: 36px;
-        font-weight: 600;
-        letter-spacing: -1px;
-        margin-bottom: 30px;
+	&__title {
+		font-size: 36px;
+		font-weight: 600;
+		letter-spacing: -1px;
+		margin-bottom: 30px;
+	}
+
+    &__small {
+        color: rgb(161, 161, 161);
+        font-size: 12px;
     }
+
+    &__newcategory {
+        color: #4d84fe;
+        font-weight: 400;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+::ng-deep {
+	.cdk-overlay-container {
+		z-index: 2000;
+	}
+
+    .mat-form-field {
+        display: block !important;
+        line-height: 1 !important;
+    }
+
+    .mat-form-field-wrapper{
+        margin-bottom: -1.25em;
+     }
 }
