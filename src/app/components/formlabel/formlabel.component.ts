@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 @Component({
@@ -9,4 +9,5 @@ import { AbstractControl } from '@angular/forms';
 export class FormlabelComponent {
   @Input() for: string;
   @Input() control: AbstractControl | null;
+  @Input() isFormSubmitted: boolean = false;
 }

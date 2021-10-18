@@ -5,7 +5,8 @@
             <form-group>
                 <form-label
                     for="taskname"
-                    [control]="addNewTask.get('name')"    
+                    [control]="addNewTask.get('name')"
+                    [isFormSubmitted]="hasSubmittedForm"
                 >
                     Task name
                 </form-label>
@@ -21,6 +22,7 @@
                 <form-label
                     for="description"
                     [control]="addNewTask.get('description')"
+                    [isFormSubmitted]="hasSubmittedForm"
                 >
                     Description
                 </form-label>
@@ -35,7 +37,7 @@
             <form-group>
                 <form-col>
                     <ng-container id="modal__category">
-                        <form-label>End date</form-label>
+                        <form-label [control]="addNewTask.get('finish')" [isFormSubmitted]="hasSubmittedForm">End date</form-label>
                         <mat-form-field appearance="fill">
                             <mat-label>Choose end date</mat-label>
                             <input matInput [matDatepicker]="picker" formControlName="finish">
@@ -44,13 +46,21 @@
                         </mat-form-field>
                     </ng-container>
                     <ng-container id="modal__date">
-                        <form-label>Category</form-label>
+                        <form-label
+                            [control]="addNewTask.get('category')"
+                            [isFormSubmitted]="hasSubmittedForm">
+                            Category
+                        </form-label>
                         <mat-form-field appearance="fill">
                             <mat-label>Choose category</mat-label>
                             <mat-select formControlName="category">
-                                <mat-option *ngFor="let food of foods" [value]="food.value">
-                                {{food.viewValue}}
-                                </mat-option>
+                                <ng-container *ngIf="(taskCategory$ | async) as taskCategories">
+                                    <mat-option
+                                        *ngFor="let category of taskCategories"
+                                        [value]="category.categoryValue">
+                                        {{ category.categoryName }}
+                                    </mat-option>
+                                </ng-container>
                             </mat-select>
                         </mat-form-field>
                         <small class="modal__small">Can't find? <span class="modal__newcategory">Create a new one!</span></small>

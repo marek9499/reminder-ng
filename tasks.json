@@ -1,13 +1,40 @@
 {
-    "tasks": [
-        {
-            "id": 1,
-            "title": "przykladowy task",
-            "description": "super fajny opis taska",
-            "finishDate": 1632250086335,
-            "stage": "IN_PROGRESS",
-            "category": "category1"
-        }
-    ],
-    "categories": ["category1", "category2", "category3"]
+  "tasks": [
+    {
+      "id": 1,
+      "title": "przykladowy task",
+      "description": "super fajny opis taska",
+      "finishDate": 1632250086335,
+      "stage": "IN_PROGRESS",
+      "category": "category1"
+    },
+    {
+      "id": 2,
+      "title": "123",
+      "description": "45666",
+      "finishDate": "2021-09-30T22:00:00.000Z",
+      "stage": "Started",
+      "category": "house",
+      "updatedAt": 1634587278898
+    },
+    {
+      "id": 3,
+      "title": "123",
+      "description": "45666",
+      "finishDate": "2021-09-30T22:00:00.000Z",
+      "stage": "Started",
+      "category": "house",
+      "updatedAt": 1634587385817
+    }
+  ],
+  "categories": [
+    {
+      "categoryName": "Work",
+      "categoryValue": "work"
+    },
+    {
+      "categoryName": "House",
+      "categoryValue": "house"
+    }
+  ]
 }
