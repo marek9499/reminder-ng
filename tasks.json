@@ -1,40 +1,20 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "title": "przykladowy task",
-      "description": "super fajny opis taska",
-      "finishDate": 1632250086335,
-      "stage": "IN_PROGRESS",
-      "category": "category1"
-    },
-    {
-      "id": 2,
-      "title": "123",
-      "description": "45666",
-      "finishDate": "2021-09-30T22:00:00.000Z",
+      "title": "test1",
+      "description": "test2",
+      "finishDate": "2021-10-19T22:00:00.000Z",
       "stage": "Started",
-      "category": "house",
-      "updatedAt": 1634587278898
-    },
-    {
-      "id": 3,
-      "title": "123",
-      "description": "45666",
-      "finishDate": "2021-09-30T22:00:00.000Z",
-      "stage": "Started",
-      "category": "house",
-      "updatedAt": 1634587385817
+      "category": "hehe",
+      "updatedAt": 1634647133649,
+      "id": 2
     }
   ],
   "categories": [
     {
-      "categoryName": "Work",
-      "categoryValue": "work"
-    },
-    {
-      "categoryName": "House",
-      "categoryValue": "house"
+      "categoryName": "hehe",
+      "categoryValue": "hehe",
+      "id": 1
     }
   ]
 }

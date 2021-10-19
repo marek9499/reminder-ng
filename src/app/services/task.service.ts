@@ -25,9 +25,7 @@ export class TaskService {
     return this.http.post<Task>(this.appConfiguration.apiEndpoint + ':3000/tasks', task);
   }
 
-  public getLastTaskId(): Observable<number> {
-    return this.http.get<Task[]>(this.appConfiguration.apiEndpoint + ':3000/tasks').pipe(
-      map(response => Math.max(...response.map(({id}) => id)))
-    )
+  public addNewCategory(category: ICategory): Observable<ICategory> {
+    return this.http.post<ICategory>(this.appConfiguration.apiEndpoint + ':3000/categories', category);
   }
 }

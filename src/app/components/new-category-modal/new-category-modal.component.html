@@ -1,0 +1,26 @@
+<ngx-smart-modal identifier="{{ modalIdentifier }}">
+    <modal-container>
+        <modal-title>Add new category</modal-title>
+        <info-box *ngIf="hasCategoryAdded === true">A new category has been successfully added!</info-box>
+        <form [formGroup]="addNewCategoryForm">
+            <form-group>
+                <form-label
+                    for="categoryname"
+                    [control]="addNewCategoryForm.get('name')"
+                    [isFormSubmitted]="hasSubmittedForm"
+                >
+                    Name:
+                </form-label>
+                <app-input
+                    type="input"
+                    formControlName="name"
+                    identifier="categoryname"
+                    placeholder="Enter category new name...">
+                </app-input>
+            </form-group>
+            <modal-footer align="right">
+                <app-button theme="blue" (click)="addNewCategory()">Add</app-button>
+            </modal-footer>
+        </form>
+    </modal-container>
+</ngx-smart-modal>

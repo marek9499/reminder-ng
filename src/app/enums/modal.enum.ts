@@ -1,3 +1,4 @@
 export enum Modal {
-    NewTask = 'newTaskModal'
+    NewTask = 'newTaskModal',
+    NewCategory = 'newCategoryModal'
 }

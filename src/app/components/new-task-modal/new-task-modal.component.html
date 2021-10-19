@@ -1,6 +1,7 @@
 <ngx-smart-modal identifier="{{ modalIdentifier }}">
-    <div class="container modal">
-        <p class="modal__title">Add new task</p>
+    <modal-container>
+        <modal-title>Add new task</modal-title>
+        <info-box *ngIf="isNewTaskAdded === true">The new task has been added successfully!</info-box>
         <form [formGroup]="addNewTask">
             <form-group>
                 <form-label
@@ -63,15 +64,20 @@
                                 </ng-container>
                             </mat-select>
                         </mat-form-field>
-                        <small class="modal__small">Can't find? <span class="modal__newcategory">Create a new one!</span></small>
+                        <modal-small-text (click)="createNewTaskCategory()">
+                            Can't find?
+                            <modal-small-text-highlight (click)="createNewTaskCategory()">Create a new one!</modal-small-text-highlight>
+                        </modal-small-text>
                     </ng-container>
                 </form-col>
             </form-group>
 
-            <div class="modal__footer">
+            <modal-footer align="right">
                 <app-button theme="white" (onClick)="clearNewTaskForm()">Clear</app-button>
                 <app-button theme="blue" (onClick)="createNewTask()">Create</app-button>
-            </div>
+            </modal-footer>
         </form>
-    </div>
+    </modal-container>
 </ngx-smart-modal>
+
+<new-category-modal (onAddCategory)="appendCategories()"></new-category-modal>

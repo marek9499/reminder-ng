@@ -1,0 +1,11 @@
+.modal {
+    &__highlight {
+        color: #4d84fe;
+        font-weight: 400;
+        position: relative;
+        z-index: 100;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
