@@ -37,7 +37,7 @@
             
             <form-group>
                 <form-col>
-                    <ng-container id="modal__category">
+                    <ng-container id="left">
                         <form-label [control]="addNewTask.get('finish')" [isFormSubmitted]="hasSubmittedForm">End date</form-label>
                         <mat-form-field appearance="fill">
                             <mat-label>Choose end date</mat-label>
@@ -46,7 +46,7 @@
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                     </ng-container>
-                    <ng-container id="modal__date">
+                    <ng-container id="right">
                         <form-label
                             [control]="addNewTask.get('category')"
                             [isFormSubmitted]="hasSubmittedForm">

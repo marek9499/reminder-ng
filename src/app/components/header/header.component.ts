@@ -25,6 +25,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.prepareSearchForm();
+    setTimeout(() => {
+      this.modal.getModal(Modal.NewTask).open();
+    }, 0);
   }
 
   public prepareSearchForm(): void {
