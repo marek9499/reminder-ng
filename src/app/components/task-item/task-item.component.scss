@@ -1,0 +1,45 @@
+.task {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: white;
+    height: auto;
+    padding: 20px;
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__date {
+        color: #a3a2a2;
+        font-size: 13px;
+    }
+
+    &__settings {
+        color: #a3a2a2;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 500;
+        margin-top: 10px;
+    }
+
+    &__description {
+        color: #656565;
+        font-size: 15px;
+        margin-top: 5px;
+        line-height: 1.5;
+    }
+
+    &__status {
+        color: rgb(77, 202, 77);
+        padding-top: 20px;
+    }
+}

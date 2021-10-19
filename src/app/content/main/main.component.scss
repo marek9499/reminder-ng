@@ -1,6 +1,6 @@
 @import '../../../assets/breakpoints.scss';
 
-:host {
+main {
     margin: 20px;
     @media only screen and (min-width: $medium) {
         margin-left: 245px;

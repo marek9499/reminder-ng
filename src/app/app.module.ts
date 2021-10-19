@@ -34,6 +34,9 @@ import { SmallComponent } from './components/modal/small/small.component';
 import { HighlightComponent } from './components/modal/highlight/highlight.component';
 import { FooterComponent } from './components/modal/footer/footer.component';
 import { InfoBoxComponent } from './components/info-box/info-box.component';
+import { TaskItemComponent } from './components/task-item/task-item.component';
+import { MatMenuModule } from '@angular/material/menu'; 
+import { MatIconModule } from '@angular/material/icon'; 
 registerLocaleData(localePl, 'pl');
 
 @NgModule({
@@ -54,7 +57,8 @@ registerLocaleData(localePl, 'pl');
     SmallComponent,
     HighlightComponent,
     FooterComponent,
-    InfoBoxComponent
+    InfoBoxComponent,
+    TaskItemComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +72,8 @@ registerLocaleData(localePl, 'pl');
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
+    MatMenuModule,
+    MatIconModule,
     HttpClientModule
   ],
   providers: [
