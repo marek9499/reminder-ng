@@ -1,7 +1,7 @@
 <div class="task">
     <div class="task__top">
         <div class="task__date">
-            <fa-icon [icon]="faClock"></fa-icon> 26 wrzesień (za 4 dni)
+            <fa-icon [icon]="faClock"></fa-icon> {{ finishDate }} ({{ finishDateDeadlineDays }})
         </div>
 
         <div class="task__settings" [matMenuTriggerFor]="menu">
@@ -11,7 +11,7 @@
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="deleteTask(task.id);">
                     <mat-icon>delete</mat-icon>
                     <span>Delete</span>
                 </button>
@@ -19,16 +19,17 @@
         </div>
     </div>
 
-    <div class="task__title">
-        Przykladowy task 123
-    </div>
+    <p class="task__title">
+        {{ task.title }}
+    </p>
 
     <div class="task__description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
+        {{ task.description }}
     </div>
 
-    <div class="task__status">
-        <fa-icon [icon]="faTick"></fa-icon> Completed
-    </div>
+    <ng-container *ngIf="task.stage === TaskStatus.Completed">
+        <div class="task__status">
+            <fa-icon [icon]="faTick"></fa-icon> Completed
+        </div>
+    </ng-container>
 </div>

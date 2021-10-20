@@ -1,4 +1,8 @@
 <main>
-    <new-task-modal></new-task-modal>
-    <app-task-item></app-task-item>
+    <app-task-item
+        *ngFor="let task of tasks$"
+        [task]="task"
+        (onTaskRemove)="updateTaskList('onRemove', task)"
+    ></app-task-item>
+    <new-task-modal (onAddTask)="updateTaskList('onAdd', $event)"></new-task-modal>
 </main>

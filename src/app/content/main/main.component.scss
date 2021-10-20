@@ -1,7 +1,7 @@
 @import '../../../assets/breakpoints.scss';
 
 main {
-    margin: 20px;
+    margin: 0 20px;
     @media only screen and (min-width: $medium) {
         margin-left: 245px;
     }
