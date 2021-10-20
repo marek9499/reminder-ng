@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Task } from 'src/app/models/task.model';
 import { TaskService } from 'src/app/services/task.service';
 
@@ -17,7 +19,7 @@ export class MainComponent implements OnInit {
   }
 
   public prepareTasks(): void {
-    this.taskService.getTasks().subscribe(resp => this.tasks$ = resp);
+    this.taskService.getTasks().pipe(take(1)).subscribe(resp => this.tasks$ = resp);
   }
 
   public updateTaskList(action: string, task: Task): void {

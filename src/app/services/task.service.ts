@@ -36,10 +36,4 @@ export class TaskService {
   public deleteTask(taskId: number | undefined): Observable<Task> {
     return this.http.delete<Task>(this.appConfiguration.apiEndpoint + `:3000/tasks/${taskId}`);
   }
-
-  public getRecentTaskId(): Observable<number | undefined> {
-    return this.getTasks().pipe(
-      map(resp => resp[resp.length - 1].id)
-    )
-  }
 }

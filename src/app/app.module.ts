@@ -37,9 +37,6 @@ import { InfoBoxComponent } from './components/info-box/info-box.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { MatMenuModule } from '@angular/material/menu'; 
 import { MatIconModule } from '@angular/material/icon'; 
-import * as moment from 'moment';
-import 'moment/locale/pl';
-moment.locale('pl');
 registerLocaleData(localePl, 'pl');
 
 @NgModule({
