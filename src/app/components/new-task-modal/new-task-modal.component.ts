@@ -47,7 +47,6 @@ export class NewTaskModalComponent implements OnInit {
     console.log(this.addNewTask.value);
     this.hasSubmittedForm = true;
     if(this.addNewTask.valid === true) {
-
       this.taskService.addNewTask(this.getTaskPayload()).pipe(take(1)).subscribe(resp => this.onAddTask.emit(resp));
       this.isNewTaskAdded = true;
     }

@@ -15,6 +15,7 @@ import { take } from 'rxjs/operators';
 export class TaskItemComponent implements OnInit, OnChanges {
   @Input() task: Task;
   @Output() onTaskRemove = new EventEmitter();
+  @Output() onTaskUpdateStatus = new EventEmitter();
 
   public finishDate: string | Moment;
   public finishDateDeadlineDays: string | Moment;
@@ -36,6 +37,10 @@ export class TaskItemComponent implements OnInit, OnChanges {
   }
 
   public deleteTask(taskId: number | undefined): void {
-    this.taskService.deleteTask(taskId).pipe(take(1)).subscribe(resp => this.onTaskRemove.emit(resp));
+    this.taskService.deleteTask(taskId).pipe(take(1)).subscribe((resp: Task) => this.onTaskRemove.emit(resp));
+  }
+
+  public setTaskFinished(task: Task): void {
+    this.taskService.markTaskStatusAs(task, TaskStatus.Completed).pipe(take(1)).subscribe((resp: Task) => this.task.stage = resp.stage);
   }
 }

@@ -2,7 +2,9 @@ import { Component, Directive, forwardRef, Injector, Input, OnChanges, OnInit, S
 import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Observable } from 'rxjs';
+import { Modal } from 'src/app/enums/modal.enum';
 import { ICategory } from 'src/app/models/category.model';
 import { NewTaskModalComponent } from '../new-task-modal/new-task-modal.component';
 
@@ -32,7 +34,9 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   public disabled: boolean;
   public ngControl: NgControl;
 
-  constructor(private readonly injector: Injector) {}
+  constructor(
+    private readonly injector: Injector,
+    private readonly modal: NgxSmartModalService) {}
 
   ngOnInit(): void {
     this.ngControl = this.injector.get(NgControl);
@@ -68,5 +72,9 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   public updateDate(event: MatSelectChange): void {
     this.onChange(event.value);
     this.writeValue(event.value);
+  }
+
+  public createNewTaskCategory(): void {
+    this.modal.getModal(Modal.NewCategory).open();
   }
 }

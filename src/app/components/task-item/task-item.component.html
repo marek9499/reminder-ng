@@ -9,7 +9,7 @@
         <div class="task__settings" [matMenuTriggerFor]="menu">
             <fa-icon [icon]="faEllipsisV"></fa-icon>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item disabled>
+                <button mat-menu-item (click)="setTaskFinished(task);">
                     <mat-icon>done</mat-icon>
                     <span>Finished</span>
                 </button>
