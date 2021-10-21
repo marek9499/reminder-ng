@@ -10,6 +10,7 @@ import { InputComponent } from './components/input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { MatDatepickerModule } from '@angular/material/datepicker'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -68,6 +69,7 @@ registerLocaleData(localePl, 'pl');
     NgxSmartModalModule.forRoot(),
     BrowserAnimationsModule,
     MatFormFieldModule,
+    NgxMaterialTimepickerModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,

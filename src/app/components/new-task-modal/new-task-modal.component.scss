@@ -8,6 +8,24 @@
 		z-index: 2000;
 	}
 
+    .ngx-material-timepicker-content {
+        z-index: 3001 !important;
+    }
+
+    .timepicker {
+        &-backdrop-overlay {
+            z-index: 3002 !important;
+        }
+
+        &-overlay {
+            z-index: 3003 !important;
+        }
+
+        &__header {
+            background-color: #4d84fe !important;
+        }
+    }
+
     .mat-form-field {
         display: block !important;
         line-height: 1 !important;

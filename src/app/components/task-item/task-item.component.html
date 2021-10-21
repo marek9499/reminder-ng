@@ -1,13 +1,19 @@
 <div class="task">
     <div class="task__top">
-        <div class="task__date">
-            <fa-icon [icon]="faClock"></fa-icon> {{ finishDate }} ({{ finishDateDeadlineDays }})
-        </div>
+        <ng-container *ngIf="task.finishDate !== null">
+            <div class="task__date">
+                <fa-icon [icon]="faClock"></fa-icon> {{ finishDate }} ({{ finishDateDeadlineDays }})
+            </div>
+        </ng-container>
 
         <div class="task__settings" [matMenuTriggerFor]="menu">
             <fa-icon [icon]="faEllipsisV"></fa-icon>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item>
+                <button mat-menu-item disabled>
+                    <mat-icon>done</mat-icon>
+                    <span>Finished</span>
+                </button>
+                <button mat-menu-item disabled>
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
                 </button>

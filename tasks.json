@@ -1,31 +1,12 @@
 {
   "tasks": [
     {
-      "title": "asdas",
-      "description": "asdasd",
-      "finishDate": "2021-10-26T22:00:00.000Z",
+      "title": "1",
+      "description": "2",
       "stage": "Started",
-      "category": "hehe",
-      "updatedAt": 1634737544646,
-      "id": 1
-    },
-    {
-      "title": "asdas",
-      "description": "asdasd",
-      "finishDate": "2021-10-26T22:00:00.000Z",
-      "stage": "Started",
-      "category": "hehe",
-      "updatedAt": 1634737547861,
-      "id": 2
-    },
-    {
-      "title": "asdas",
-      "description": "asdasd",
-      "finishDate": "2021-10-26T22:00:00.000Z",
-      "stage": "Started",
-      "category": "hehe",
-      "updatedAt": 1634737548560,
-      "id": 3
+      "category": "",
+      "updatedAt": 1634820872191,
+      "id": 10
     }
   ],
   "categories": [
@@ -38,6 +19,11 @@
       "categoryName": "pieski",
       "categoryValue": "pieski",
       "id": 2
+    },
+    {
+      "categoryName": "kotki",
+      "categoryValue": "kotki",
+      "id": 3
     }
   ]
 }

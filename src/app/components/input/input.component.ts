@@ -1,6 +1,10 @@
-import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Directive, forwardRef, Injector, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { Observable } from 'rxjs';
+import { ICategory } from 'src/app/models/category.model';
+import { NewTaskModalComponent } from '../new-task-modal/new-task-modal.component';
 
 @Component({
   selector: 'app-input',
@@ -14,16 +18,26 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
     }
   ]
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor, OnInit {
   @Input() type: string;
   @Input() icon: IconDefinition;
   @Input() placeholder: string;
   @Input() identifier: string;
+  @Input() isFormSubmitted: boolean = false;
+  @Input() taskCategories$: Observable<ICategory[]>;
   
   public value: string;
   public onChange: (value: any) => void;
   public onTouched: () => void;
   public disabled: boolean;
+  public ngControl: NgControl;
+
+  constructor(private readonly injector: Injector) {}
+
+  ngOnInit(): void {
+    this.ngControl = this.injector.get(NgControl);
+  }
+
 
   public changedInput(event: Event): void {
     const value: string = (<HTMLInputElement>event.target).value;
@@ -44,5 +58,15 @@ export class InputComponent implements ControlValueAccessor {
 
   public setDisabledState?(isBoolean: false): void {
     this.disabled = isBoolean;
+  }
+
+  public updateTime(event: string): void {
+    this.onChange(event);
+    this.writeValue(event);
+  }
+
+  public updateDate(event: MatSelectChange): void {
+    this.onChange(event.value);
+    this.writeValue(event.value);
   }
 }

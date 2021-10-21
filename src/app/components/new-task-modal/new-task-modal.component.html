@@ -1,80 +1,58 @@
-<ngx-smart-modal identifier="{{ modalIdentifier }}">
+<ngx-smart-modal identifier="{{ modalIdentifier }}" (onClose)="handleCloseModal()">
     <modal-container>
         <modal-title>Add new task</modal-title>
         <info-box *ngIf="isNewTaskAdded === true">The new task has been added successfully!</info-box>
         <form [formGroup]="addNewTask">
             <form-group>
-                <form-label
-                    for="taskname"
-                    [control]="addNewTask.get('name')"
-                    [isFormSubmitted]="hasSubmittedForm"
-                >
+                <form-label for="taskname" [control]="addNewTask.get('name')" [isFormSubmitted]="hasSubmittedForm">
                     Task name
                 </form-label>
-                <app-input
-                    type="input"
-                    formControlName="name"
-                    identifier="taskname"
-                    placeholder="Enter task's new name...">
+                <app-input type="input" formControlName="name" identifier="taskname"
+                    placeholder="Enter task's new name" [isFormSubmitted]="hasSubmittedForm">
                 </app-input>
             </form-group>
-            
+
             <form-group>
-                <form-label
-                    for="description"
-                    [control]="addNewTask.get('description')"
-                    [isFormSubmitted]="hasSubmittedForm"
-                >
+                <form-label for="description" [control]="addNewTask.get('description')"
+                    [isFormSubmitted]="hasSubmittedForm">
                     Description
                 </form-label>
-                <app-input
-                    type="textarea"
-                    formControlName="description"
-                    identifier="description"
-                    placeholder="Enter task's description...">
+                <app-input type="textarea" formControlName="description" identifier="description"
+                    placeholder="Enter task's description" [isFormSubmitted]="hasSubmittedForm">
                 </app-input>
             </form-group>
-            
+
             <form-group>
                 <form-col>
                     <ng-container id="left">
-                        <form-label [control]="addNewTask.get('finish')" [isFormSubmitted]="hasSubmittedForm">End date</form-label>
+                        <form-label [control]="addNewTask.get('finishDay')" [isFormSubmitted]="hasSubmittedForm">End
+                            date</form-label>
                         <mat-form-field appearance="fill">
                             <mat-label>Choose end date</mat-label>
-                            <input matInput [matDatepicker]="picker" formControlName="finish">
+                            <input matInput [matDatepicker]="picker" formControlName="finishDay">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                     </ng-container>
                     <ng-container id="right">
-                        <form-label
-                            [control]="addNewTask.get('category')"
-                            [isFormSubmitted]="hasSubmittedForm">
-                            Category
+                        <form-label [isFormSubmitted]="hasSubmittedForm">
+                            End hour
                         </form-label>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Choose category</mat-label>
-                            <mat-select formControlName="category">
-                                <ng-container *ngIf="(taskCategory$ | async) as taskCategories">
-                                    <mat-option
-                                        *ngFor="let category of taskCategories"
-                                        [value]="category.categoryValue">
-                                        {{ category.categoryName }}
-                                    </mat-option>
-                                </ng-container>
-                            </mat-select>
-                        </mat-form-field>
-                        <modal-small-text (click)="createNewTaskCategory()">
-                            Can't find?
-                            <modal-small-text-highlight (click)="createNewTaskCategory()">Create a new one!</modal-small-text-highlight>
-                        </modal-small-text>
+                        <app-input type="time" formControlName="finishHour" placeholder="Enter end hour"></app-input>
                     </ng-container>
                 </form-col>
             </form-group>
 
+            <form-group>
+                <form-label [control]="addNewTask.get('category')" [isFormSubmitted]="hasSubmittedForm">
+                    Category
+                </form-label>
+                <app-input type="category" formControlName="category" [taskCategories$]="taskCategory$" ></app-input>
+            </form-group>
+
             <modal-footer align="right">
                 <app-button theme="white" (onClick)="clearNewTaskForm()">Clear</app-button>
-                <app-button theme="blue" (onClick)="createNewTask()">Create</app-button>
+                <app-button theme="blue" (onClick)="submitCreateNewTask()">Create</app-button>
             </modal-footer>
         </form>
     </modal-container>

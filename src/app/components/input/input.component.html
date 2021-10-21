@@ -10,7 +10,9 @@
         [ngClass]="{
             'iconspace': icon != null,
             'field': true,
-            'input': true
+            'input': true,
+            'correct': (ngControl.valid && (ngControl.touched || ngControl.dirty)),
+            'invalid': ((ngControl.invalid && ngControl.touched) || (isFormSubmitted === true && ngControl.invalid))
         }"/>
     <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
 </ng-container>
@@ -25,6 +27,42 @@
         [placeholder]="placeholder"
         [ngClass]="{
             'field': true,
-            'textarea': true
+            'textarea': true,
+            'correct': (ngControl.valid && (ngControl.touched || ngControl.dirty)),
+            'invalid': ((ngControl.invalid && ngControl.touched) || (isFormSubmitted === true && ngControl.invalid))
         }"></textarea>
+</ng-container>
+
+<ng-container *ngIf="type === 'time'">
+    <input
+        (blur)="onTouched()"
+        (input)="changedInput($event)"
+        [value]="value"
+        [ngxTimepicker]="timePicker"
+        [format]="24"
+        [ngClass]="{
+            'field': true,
+            'date': true,
+            'correct': ((ngControl.touched || ngControl.dirty)),
+            'invalid': ngControl.invalid && ngControl.touched
+        }">
+    <ngx-material-timepicker #timePicker (timeChanged)="ngControl.control?.markAsTouched(); updateTime($event);"></ngx-material-timepicker>
+</ng-container>
+
+<ng-container *ngIf="type === 'category'">
+    <mat-form-field appearance="fill">
+        <mat-label>Choose category</mat-label>
+        <mat-select (selectionChange)="updateDate($event);">
+            <ng-container *ngIf="(taskCategories$ | async) as taskCategories">
+                <mat-option *ngFor="let category of taskCategories" [value]="category.categoryValue">
+                    {{ category.categoryName }}
+                </mat-option>
+            </ng-container>
+        </mat-select>
+    </mat-form-field>
+    <modal-small-text>
+        Can't find?
+        <modal-small-text-highlight>Create a new one!
+        </modal-small-text-highlight>
+    </modal-small-text>
 </ng-container>

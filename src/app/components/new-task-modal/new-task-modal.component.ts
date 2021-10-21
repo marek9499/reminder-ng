@@ -5,7 +5,7 @@ import { TaskService } from 'src/app/services/task.service';
 import { Observable } from 'rxjs';
 import { ICategory } from 'src/app/models/category.model';
 import { TaskStatus } from 'src/app/enums/task-progress.enum';
-import { mergeMap, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Task } from 'src/app/models/task.model';
 
@@ -36,25 +36,19 @@ export class NewTaskModalComponent implements OnInit {
   public prepareNewTaskForm(): void {
     this.addNewTask = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1)]],
-      description: ['', [Validators.required, Validators.minLength(1)]],
-      finish: ['', Validators.required],
-      category: ['', [Validators.required, Validators.minLength(1)]]
+      description: ['', [Validators.nullValidator]],
+      finishDay: ['', Validators.nullValidator],
+      finishHour: ['', Validators.nullValidator],
+      category: ['', [Validators.nullValidator]]
     });
   }
 
-  public createNewTask(): void {
+  public submitCreateNewTask(): void {
+    console.log(this.addNewTask.value);
     this.hasSubmittedForm = true;
     if(this.addNewTask.valid === true) {
-      const taskPayload: Task = {
-        title: this.addNewTask.get('name')?.value,
-        description: this.addNewTask.get('description')?.value,
-        finishDate: this.addNewTask.get('finish')?.value,
-        stage: TaskStatus.Started,
-        category: this.addNewTask.get('category')?.value,
-        updatedAt: new Date().getTime()
-      }
-      this.taskService.addNewTask(taskPayload).pipe(take(1)).subscribe(resp => this.onAddTask.emit(resp));
-      this.hasSubmittedForm = false;
+
+      this.taskService.addNewTask(this.getTaskPayload()).pipe(take(1)).subscribe(resp => this.onAddTask.emit(resp));
       this.isNewTaskAdded = true;
     }
   }
@@ -70,5 +64,28 @@ export class NewTaskModalComponent implements OnInit {
 
   public createNewTaskCategory(): void {
     this.modal.getModal(Modal.NewCategory).open();
+  }
+
+  public getTaskPayload(): Task {
+    const taskPayload: Task = {
+      title: this.addNewTask.get('name')?.value,
+      description: this.addNewTask.get('description')?.value,
+      finishDate: this.addNewTask.get('finish')?.value,
+      stage: TaskStatus.Started,
+      category: this.addNewTask.get('category')?.value,
+      updatedAt: new Date().getTime()
+    }
+
+    if(taskPayload.finishDate === "") {
+      taskPayload.finishDate = null;
+    }
+
+    return taskPayload;
+  }
+
+  public handleCloseModal(): void {
+    this.addNewTask.reset();
+    this.hasSubmittedForm = false;
+    this.isNewTaskAdded = false;
   }
 }
