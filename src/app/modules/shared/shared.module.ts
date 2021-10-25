@@ -21,14 +21,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { MatDatepickerModule } from '@angular/material/datepicker'; 
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
-import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatMenuModule } from '@angular/material/menu'; 
-import { MatIconModule } from '@angular/material/icon'; 
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -54,22 +48,17 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    NgxSmartModalModule.forRoot(),
-    MatFormFieldModule,
     NgxMaterialTimepickerModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatSelectModule,
-    MatMenuModule,
-    MatIconModule,
-    HttpClientModule
+    NgxSmartModalModule.forRoot(),
+    HttpClientModule,
+    MaterialModule
   ],
   exports: [
     TaskItemComponent,
     NewTaskModalComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    MaterialModule
   ]
 })
 export class SharedModule { }

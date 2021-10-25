@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { APP_CONFIG, TODO_CONFIG } from './app.config';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './content/main/main.component';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [

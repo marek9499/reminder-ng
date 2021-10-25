@@ -1,4 +1,60 @@
 {
-  "tasks": [],
-  "categories": []
+  "tasks": [
+    {
+      "title": "task test",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "stage": "Started",
+      "category": "hello",
+      "updatedAt": 1635153674254,
+      "id": 2
+    },
+    {
+      "title": "task test 1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "stage": "Started",
+      "category": "hello",
+      "updatedAt": 1635153679428,
+      "id": 3
+    },
+    {
+      "title": "task test 2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "stage": "Started",
+      "category": "hello",
+      "updatedAt": 1635153682534,
+      "id": 4
+    }
+  ],
+  "categories": [
+    {
+      "categoryName": "hehe",
+      "categoryValue": "hehe",
+      "id": 1
+    },
+    {
+      "categoryName": "pieski",
+      "categoryValue": "pieski",
+      "id": 2
+    },
+    {
+      "categoryName": "kotki",
+      "categoryValue": "kotki",
+      "id": 3
+    },
+    {
+      "categoryName": "hello",
+      "categoryValue": "hello",
+      "id": 4
+    },
+    {
+      "categoryName": "hello there",
+      "categoryValue": "hello there",
+      "id": 5
+    },
+    {
+      "categoryName": "koty",
+      "categoryValue": "koty",
+      "id": 6
+    }
+  ]
 }
