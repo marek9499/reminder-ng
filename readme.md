@@ -9,11 +9,12 @@ For a long time I wanted to refactor the old app called 'todoapp v2' from vanill
 
 ```
 └─app
-  |  directives
   |  enums
   |  content
   |  models
-  |  components
+  └──shared
+  |  └─components
+  |   
   |  services
   |
   └──assets
