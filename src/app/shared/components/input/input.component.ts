@@ -1,12 +1,11 @@
-import { Component, Directive, forwardRef, Injector, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, Injector, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Observable } from 'rxjs';
 import { Modal } from 'src/app/enums/modal.enum';
 import { ICategory } from 'src/app/models/category.model';
-import { NewTaskModalComponent } from '../new-task-modal/new-task-modal.component';
 
 @Component({
   selector: 'app-input',

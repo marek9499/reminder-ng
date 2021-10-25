@@ -1,8 +1,9 @@
 @import '../../../assets/breakpoints.scss';
 
 main {
-    margin: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
     @media only screen and (min-width: $medium) {
-        margin-left: 245px;
+        margin-left: 225px;
     }
 }
