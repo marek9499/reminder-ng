@@ -50,6 +50,11 @@
       "categoryName": "hello there",
       "categoryValue": "hello there",
       "id": 5
+    },
+    {
+      "categoryName": "koty",
+      "categoryValue": "koty",
+      "id": 6
     }
   ]
 }
