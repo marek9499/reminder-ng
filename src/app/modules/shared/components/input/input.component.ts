@@ -1,11 +1,10 @@
-import { Component, forwardRef, Injector, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Injector, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { Observable } from 'rxjs';
 import { Modal } from 'src/app/enums/modal.enum';
-import { ICategory } from 'src/app/models/category.model';
+import { IOption } from 'src/app/models/option.model';
 
 @Component({
   selector: 'app-input',
@@ -19,13 +18,13 @@ import { ICategory } from 'src/app/models/category.model';
     }
   ]
 })
-export class InputComponent implements ControlValueAccessor, OnInit {
+export class InputComponent implements ControlValueAccessor, OnInit, OnChanges {
   @Input() type: string;
   @Input() icon: IconDefinition;
   @Input() placeholder: string;
   @Input() identifier: string;
   @Input() isFormSubmitted: boolean = false;
-  @Input() taskCategories$: Observable<ICategory[]>;
+  @Input() options: IOption[] | null;
   
   public value: string;
   public onChange: (value: any) => void;
@@ -75,5 +74,11 @@ export class InputComponent implements ControlValueAccessor, OnInit {
 
   public createNewTaskCategory(): void {
     this.modal.getModal(Modal.NewCategory).open();
+  }
+
+  ngOnChanges(chagnes: SimpleChanges): void {
+    if( chagnes.options ) {
+      console.log('DEBUGGING: options', chagnes.options.currentValue);
+    }
   }
 }

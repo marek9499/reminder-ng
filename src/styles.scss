@@ -11,3 +11,57 @@ body {
 		height: 0px !important;
 	}
 }
+
+.modal {
+	font-family: "Poppins", sans-serif;
+
+	&.container {
+		margin-top: 25px;
+	}
+
+	&.title {
+		font-size: 36px;
+		font-weight: 600;
+		letter-spacing: -1px;
+		margin-bottom: 15px;
+	}
+
+	&.small {
+		color: rgb(161, 161, 161);
+		font-size: 12px;
+	}
+
+	&.highlight {
+		color: #4d84fe;
+		font-weight: 400;
+		position: relative;
+		z-index: 100;
+		&:hover {
+				cursor: pointer;
+		}
+}
+}
+
+.form {
+	--gap: 20px;
+	&__group {
+		margin-bottom: 25px;
+    display: block;
+	}
+
+	&__col {
+		flex-direction: row;
+		display: inline-flex;
+		flex-wrap: nowrap;
+		margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
+		width: calc(100% + var(--gap));
+
+		&--box {
+			width: 45%;
+		}
+	}
+
+	&__spacing {
+		justify-content: space-between;
+	}
+}

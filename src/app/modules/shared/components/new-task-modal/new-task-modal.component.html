@@ -1,61 +1,84 @@
 <ngx-smart-modal identifier="{{ modalIdentifier }}" (onClose)="handleCloseModal()">
-    <modal-container>
-        <modal-title>Add new task</modal-title>
-        <info-box *ngIf="isNewTaskAdded === true">The new task has been added successfully!</info-box>
-        <form [formGroup]="addNewTask">
-            <form-group>
-                <form-label for="taskname" [control]="addNewTask.get('name')" [isFormSubmitted]="hasSubmittedForm">
-                    Task name
-                </form-label>
-                <app-input type="input" formControlName="name" identifier="taskname"
-                    placeholder="Enter task's new name" [isFormSubmitted]="hasSubmittedForm">
-                </app-input>
-            </form-group>
+  <div class="modal container">
+    <p class="modal title">Add new task</p>
+    <info-box *ngIf="isNewTaskAdded === true">The new task has been added successfully!</info-box>
+    <form [formGroup]="addNewTask">
+      <div class="form__group">
+        <form-label for="taskname" [control]="addNewTask.get('name')" [isFormSubmitted]="hasSubmittedForm">
+          Task name
+        </form-label>
+        <app-input
+          type="input"
+          formControlName="name"
+          identifier="taskname"
+          placeholder="Enter task's new name"
+          [isFormSubmitted]="hasSubmittedForm">
+        </app-input>
+      </div>
 
-            <form-group>
-                <form-label for="description" [control]="addNewTask.get('description')"
-                    [isFormSubmitted]="hasSubmittedForm">
-                    Description
-                </form-label>
-                <app-input type="textarea" formControlName="description" identifier="description"
-                    placeholder="Enter task's description" [isFormSubmitted]="hasSubmittedForm">
-                </app-input>
-            </form-group>
+      <div class="form__group">
+        <form-label for="description" [control]="addNewTask.get('description')" [isFormSubmitted]="hasSubmittedForm">
+          Description
+        </form-label>
+        <app-input
+        type="textarea"
+        formControlName="description"
+        identifier="description"
+        placeholder="Enter task's description"
+        [isFormSubmitted]="hasSubmittedForm">
+        </app-input>
+      </div>
 
-            <form-group>
-                <form-col>
-                    <ng-container id="left">
-                        <form-label [control]="addNewTask.get('finishDay')" [isFormSubmitted]="hasSubmittedForm">End
-                            date</form-label>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Choose end date</mat-label>
-                            <input matInput [matDatepicker]="picker" formControlName="finishDay">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-                    </ng-container>
-                    <ng-container id="right">
-                        <form-label [isFormSubmitted]="hasSubmittedForm">
-                            End hour
-                        </form-label>
-                        <app-input type="time" formControlName="finishHour" placeholder="Enter end hour"></app-input>
-                    </ng-container>
-                </form-col>
-            </form-group>
+      <div class="form__group">
+        <div class="form__col form__spacing">
+          <div class="form__col--box">
+            <form-label
+              [control]="addNewTask.get('finishDay')"
+              [isFormSubmitted]="hasSubmittedForm">
+              End date
+            </form-label>
+            <mat-form-field appearance="fill">
+              <mat-label>Choose end date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="finishDay">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
 
-            <form-group>
-                <form-label [control]="addNewTask.get('category')" [isFormSubmitted]="hasSubmittedForm">
-                    Category
-                </form-label>
-                <app-input type="category" formControlName="category" [taskCategories$]="taskCategory$" ></app-input>
-            </form-group>
+          <div class="form__col--box">
+            <form-label [isFormSubmitted]="hasSubmittedForm">
+              End hour
+            </form-label>
+            <app-input
+              type="time"
+              formControlName="finishHour"
+              placeholder="Enter end hour">
+            </app-input>
+          </div>
+        </div>
+      </div>
 
-            <modal-footer align="right">
-                <app-button theme="white" (onClick)="clearNewTaskForm()">Clear</app-button>
-                <app-button theme="blue" (onClick)="submitCreateNewTask()">Create</app-button>
-            </modal-footer>
-        </form>
-    </modal-container>
+      <div class="form__group">
+        <form-label [control]="addNewTask.get('category')" [isFormSubmitted]="hasSubmittedForm">
+          Category
+        </form-label>
+        <app-input
+          type="select"
+          formControlName="category"
+          [options]="taskCategory$ | async">
+        </app-input>
+        <small class="modal small">
+          Can't find?
+          <span class="modal highlight" (click)="createNewTaskCategory()">Create a new one!</span>
+        </small>
+      </div>
+
+      <modal-footer align="right">
+        <app-button theme="white" (onClick)="clearNewTaskForm()">Clear</app-button>
+        <app-button theme="blue" (onClick)="submitCreateNewTask()">Create</app-button>
+      </modal-footer>
+    </form>
+  </div>
 </ngx-smart-modal>
 
 <new-category-modal (onAddCategory)="appendCategories()"></new-category-modal>

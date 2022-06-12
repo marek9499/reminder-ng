@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
 import { Modal } from 'src/app/enums/modal.enum';
-import { ICategory } from 'src/app/models/category.model';
+import { IOption } from 'src/app/models/option.model';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -34,9 +34,9 @@ export class NewCategoryModalComponent implements OnInit {
 
   public addNewCategory(): void {
     this.hasSubmittedForm = true;
-    const categoryData: ICategory = {
-      categoryName: this.addNewCategoryForm.get('name')?.value,
-      categoryValue: (this.addNewCategoryForm.get('name')?.value).toLowerCase()
+    const categoryData: IOption = {
+      name: this.addNewCategoryForm.get('name')?.value,
+      value: (this.addNewCategoryForm.get('name')?.value).toLowerCase()
     }
     this.taskService.addNewCategory(categoryData).pipe(take(1)).subscribe(resp => {
       this.onAddCategory.emit();

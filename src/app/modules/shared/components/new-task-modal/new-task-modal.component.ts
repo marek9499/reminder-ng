@@ -3,11 +3,11 @@ import { Modal } from 'src/app/enums/modal.enum';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TaskService } from 'src/app/services/task.service';
 import { Observable } from 'rxjs';
-import { ICategory } from 'src/app/models/category.model';
 import { TaskStatus } from 'src/app/enums/task-progress.enum';
 import { take } from 'rxjs/operators';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Task } from 'src/app/models/task.model';
+import { IOption } from 'src/app/models/option.model';
 
 @Component({
   selector: 'new-task-modal',
@@ -18,7 +18,7 @@ export class NewTaskModalComponent implements OnInit {
   @Output() onAddTask = new EventEmitter();
   public modalIdentifier: string = Modal.NewTask;
   public addNewTask: FormGroup;
-  public taskCategory$: Observable<ICategory[]>;
+  public taskCategory$: Observable<IOption[]>;
   public hasSubmittedForm: boolean = false;
   public isNewTaskAdded: boolean = false;
 

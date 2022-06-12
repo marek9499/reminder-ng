@@ -3,8 +3,8 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { APP_CONFIG } from '../app.config';
 import { TaskStatus } from '../enums/task-progress.enum';
-import { ICategory } from '../models/category.model';
 import { AppConfig } from '../models/config.model';
+import { IOption } from '../models/option.model';
 import { Task } from '../models/task.model';
 
 @Injectable({
@@ -17,16 +17,16 @@ export class TaskService {
     @Inject(APP_CONFIG) private readonly appConfiguration: AppConfig
   ) {}
 
-  public getNewTaskCategories(): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(this.appConfiguration.apiEndpoint + ':3000/categories');
+  public getNewTaskCategories(): Observable<IOption[]> {
+    return this.http.get<IOption[]>(this.appConfiguration.apiEndpoint + ':3000/categories');
   }
 
   public addNewTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.appConfiguration.apiEndpoint + ':3000/tasks', task);
   }
 
-  public addNewCategory(category: ICategory): Observable<ICategory> {
-    return this.http.post<ICategory>(this.appConfiguration.apiEndpoint + ':3000/categories', category);
+  public addNewCategory(category: IOption): Observable<IOption> {
+    return this.http.post<IOption>(this.appConfiguration.apiEndpoint + ':3000/categories', category);
   }
 
   public getTasks(): Observable<Task[]> {
@@ -42,6 +42,6 @@ export class TaskService {
       ...taskPayload,
       stage: TaskStatus.Completed
     }
-    return this.http.put(this.appConfiguration.apiEndpoint + `:3000/tasks/${updatePayload.id}`, updatePayload);
+    return this.http.put(this.appConfiguration.apiEndpoint + `:3000/tasks/${ updatePayload.id }`, updatePayload);
   }
 }

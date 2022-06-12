@@ -1,67 +1,65 @@
 <ng-container *ngIf="type === 'input'">
-    <input
-        type="text"
-        (blur)="onTouched()"
-        (input)="changedInput($event)"
-        [value]="value"
-        [disabled]="disabled"
-        [id]="identifier ? identifier : ''"
-        [placeholder]="placeholder"
-        [ngClass]="{
-            'iconspace': icon != null,
-            'field': true,
-            'input': true,
-            'correct': (ngControl.valid && (ngControl.touched || ngControl.dirty)),
-            'invalid': ((ngControl.invalid && ngControl.touched) || (isFormSubmitted === true && ngControl.invalid))
-        }"/>
-    <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
+	<input
+		type="text"
+		(blur)="onTouched()"
+		(input)="changedInput($event)"
+		[value]="value"
+		[disabled]="disabled"
+		[id]="identifier ? identifier : ''"
+		[placeholder]="placeholder"
+		[ngClass]="{
+			'iconspace': icon != null,
+			'field': true,
+			'input': true,
+			'correct': (ngControl.valid && (ngControl.touched || ngControl.dirty)),
+			'invalid': ((ngControl.invalid && ngControl.touched) || (isFormSubmitted === true && ngControl.invalid))
+		}" />
+	<fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
 </ng-container>
 
 <ng-container *ngIf="type === 'textarea'">
-    <textarea
-        (blur)="onTouched()"
-        (input)="changedInput($event)"
-        [value]="value"
-        [disabled]="disabled"
-        [id]="identifier ? identifier : ''"
-        [placeholder]="placeholder"
-        [ngClass]="{
-            'field': true,
-            'textarea': true,
-            'correct': (ngControl.valid && (ngControl.touched || ngControl.dirty)),
-            'invalid': ((ngControl.invalid && ngControl.touched) || (isFormSubmitted === true && ngControl.invalid))
-        }"></textarea>
+	<textarea
+		(blur)="onTouched()"
+		(input)="changedInput($event)"
+		[value]="value"
+		[disabled]="disabled"
+		[id]="identifier ? identifier : ''"
+		[placeholder]="placeholder"
+		[ngClass]="{
+			'field': true,
+			'textarea': true,
+			'correct': (ngControl.valid && (ngControl.touched || ngControl.dirty)),
+			'invalid': ((ngControl.invalid && ngControl.touched) || (isFormSubmitted === true && ngControl.invalid))
+		}">
+	</textarea>
 </ng-container>
 
 <ng-container *ngIf="type === 'time'">
-    <input
-        (blur)="onTouched()"
-        (input)="changedInput($event)"
-        [value]="value"
-        [ngxTimepicker]="timePicker"
-        [format]="24"
-        [ngClass]="{
-            'field': true,
-            'date': true,
-            'correct': ((ngControl.touched || ngControl.dirty)),
-            'invalid': ngControl.invalid && ngControl.touched
-        }">
-    <ngx-material-timepicker #timePicker (timeChanged)="ngControl.control?.markAsTouched(); updateTime($event);"></ngx-material-timepicker>
+	<input
+		(blur)="onTouched()"
+		(input)="changedInput($event)"
+		[value]="value"
+		[ngxTimepicker]="timePicker"
+		[format]="24"
+		[ngClass]="{
+			'field': true,
+			'date': true,
+			'correct': ((ngControl.touched || ngControl.dirty)),
+			'invalid': ngControl.invalid && ngControl.touched
+		}">
+	<ngx-material-timepicker
+		#timePicker
+		(timeChanged)="ngControl.control?.markAsTouched(); updateTime($event);">
+	</ngx-material-timepicker>
 </ng-container>
 
-<ng-container *ngIf="type === 'category'">
-    <mat-form-field appearance="fill">
-        <mat-label>Choose category</mat-label>
-        <mat-select (selectionChange)="updateDate($event);">
-            <ng-container *ngIf="(taskCategories$ | async) as taskCategories">
-                <mat-option *ngFor="let category of taskCategories" [value]="category.categoryValue">
-                    {{ category.categoryName }}
-                </mat-option>
-            </ng-container>
-        </mat-select>
-    </mat-form-field>
-    <modal-small-text>
-        Can't find?
-        <modal-small-text-highlight (click)="createNewTaskCategory()">Create a new one!</modal-small-text-highlight>
-    </modal-small-text>
+<ng-container *ngIf="type === 'select'">
+	<mat-form-field appearance="fill">
+		<mat-label>Choose category</mat-label>
+		<mat-select (selectionChange)="updateDate($event);">
+			<mat-option *ngFor="let option of options" [value]="option.value">
+				{{ option.name }}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
 </ng-container>
