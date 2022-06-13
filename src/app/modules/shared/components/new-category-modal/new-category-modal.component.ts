@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
 import { Modal } from 'src/app/enums/modal.enum';
 import { IOption } from 'src/app/models/option.model';
+import { CategoryService } from 'src/app/services/task-category.service';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -11,7 +12,6 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./new-category-modal.component.scss']
 })
 export class NewCategoryModalComponent implements OnInit {
-  @Output() onAddCategory = new EventEmitter();
   public modalIdentifier: string = Modal.NewCategory;
   public addNewCategoryForm: FormGroup;
   public hasSubmittedForm: boolean = false;
@@ -19,7 +19,8 @@ export class NewCategoryModalComponent implements OnInit {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly taskService: TaskService
+    private readonly taskService: TaskService,
+    private readonly categoryService: CategoryService
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +40,7 @@ export class NewCategoryModalComponent implements OnInit {
       value: (this.addNewCategoryForm.get('name')?.value).toLowerCase()
     }
     this.taskService.addNewCategory(categoryData).pipe(take(1)).subscribe(resp => {
-      this.onAddCategory.emit();
+      this.categoryService.addedCategory$.next(categoryData);
       this.hasCategoryAdded = true;
     });
   }

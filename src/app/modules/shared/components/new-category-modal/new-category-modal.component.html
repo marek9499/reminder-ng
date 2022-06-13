@@ -4,16 +4,18 @@
     <info-box *ngIf="hasCategoryAdded === true">A new category has been successfully added!</info-box>
     <form [formGroup]="addNewCategoryForm">
       <div class="form__group">
-        <form-label for="categoryname" [control]="addNewCategoryForm.get('name')" [isFormSubmitted]="hasSubmittedForm">
+        <label for="categoryname" class="label" [class.error]="
+            (addNewCategoryForm.get('name')!.touched === true && addNewCategoryForm.get('name')!.errors) ||
+            (hasSubmittedForm === true && addNewCategoryForm.get('name')!.invalid === true)">
           Name:
-        </form-label>
+        </label>
         <app-input type="input" formControlName="name" identifier="categoryname"
           placeholder="Enter category new name...">
         </app-input>
       </div>
-      <modal-footer align="right">
+      <div class="modal footer">
         <app-button theme="blue" (click)="addNewCategory()">Add</app-button>
-      </modal-footer>
+      </div>
     </form>
   </div>
 </ngx-smart-modal>

@@ -1,4 +1,4 @@
-import { Component, forwardRef, Injector, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, forwardRef, Injector, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +18,7 @@ import { IOption } from 'src/app/models/option.model';
     }
   ]
 })
-export class InputComponent implements ControlValueAccessor, OnInit, OnChanges {
+export class InputComponent implements ControlValueAccessor, OnInit {
   @Input() type: string;
   @Input() icon: IconDefinition;
   @Input() placeholder: string;
@@ -70,15 +70,5 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnChanges {
   public updateDate(event: MatSelectChange): void {
     this.onChange(event.value);
     this.writeValue(event.value);
-  }
-
-  public createNewTaskCategory(): void {
-    this.modal.getModal(Modal.NewCategory).open();
-  }
-
-  ngOnChanges(chagnes: SimpleChanges): void {
-    if( chagnes.options ) {
-      console.log('DEBUGGING: options', chagnes.options.currentValue);
-    }
   }
 }

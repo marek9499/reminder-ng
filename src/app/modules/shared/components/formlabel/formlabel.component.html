@@ -1,8 +1,0 @@
-<label
-    [for]="for ? for : ''"
-    class="label"
-    [class.error]="
-        (control?.touched === true && control?.errors) ||
-        (isFormSubmitted === true && control?.invalid === true)">
-    <ng-content></ng-content>
-</label>
