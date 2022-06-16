@@ -9,6 +9,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Task } from 'src/app/models/task.model';
 import { IOption } from 'src/app/models/option.model';
 import { CategoryService } from 'src/app/services/task-category.service'
+import { isTruthy } from 'src/app/utils/rx-operators';
 
 @Component({
   selector: 'new-task-modal',
@@ -92,8 +93,10 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
     return combineLatest((
       [
         this.taskCategoryService.initialCategories$.pipe(startWith([])),
-        this.taskCategoryService.addedCategory$.pipe(filter(Boolean), startWith([]))
-      ])).pipe(map(([initial, added]: [IOption[], unknown]) => initial.concat(<IOption>added)))
+        this.taskCategoryService.addedCategory$.pipe(isTruthy(), startWith([]))
+      ]))
+      .pipe(
+        map(([initial, added]: [IOption[], IOption | IOption[]]) => initial.concat(added as IOption)));
   }
 
   ngOnDestroy(): void {
