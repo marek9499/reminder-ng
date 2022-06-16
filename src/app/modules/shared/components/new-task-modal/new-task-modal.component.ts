@@ -21,7 +21,7 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
   public modalIdentifier: Modal = Modal.NewTask;
   public addNewTaskForm: FormGroup;
   public taskInitialCategory$: Observable<IOption[]>;
-  public taskCategoryData$: Observable<IOption[]> = this.taskCategoryData();
+  public taskCategories$: Observable<IOption[]> = this.getTaskCategoriesData();
   public hasSubmittedForm: boolean = false;
   public isNewTaskAdded: boolean = false;
 
@@ -88,7 +88,7 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
     this.isNewTaskAdded = false;
   }
 
-  public taskCategoryData(): Observable<IOption[]> {
+  public getTaskCategoriesData(): Observable<IOption[]> {
     return combineLatest((
       [
         this.taskCategoryService.initialCategories$.pipe(startWith([])),

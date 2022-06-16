@@ -57,7 +57,7 @@
             (hasSubmittedForm === true && getControl('category').invalid === true)">
           Category
         </label>
-        <app-input type="select" formControlName="category" [options]="taskCategoryData$ | async"></app-input>
+        <app-input type="select" formControlName="category" [options]="taskCategories$ | async"></app-input>
         <small class="modal small">
           Can't find?
           <span class="modal highlight" (click)="openNewTaskCategoryModal()">Create a new one!</span>

@@ -36,12 +36,15 @@ export class NewCategoryModalComponent implements OnInit {
   public addNewCategory(): void {
     this.hasSubmittedForm = true;
     const categoryData: IOption = {
-      name: this.addNewCategoryForm.get('name')?.value,
-      value: (this.addNewCategoryForm.get('name')?.value).toLowerCase()
+      name: this.addNewCategoryForm.get('name')!.value,
+      value: this.addNewCategoryForm.get('name')!.value.toLowerCase()
     }
-    this.taskService.addNewCategory(categoryData).pipe(take(1)).subscribe(resp => {
-      this.categoryService.addedCategory$.next(categoryData);
-      this.hasCategoryAdded = true;
+    this.taskService
+      .addNewCategory(categoryData)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.categoryService.addedCategory$.next(categoryData);
+        this.hasCategoryAdded = true;
     });
   }
 }
