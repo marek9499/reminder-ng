@@ -9,7 +9,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Task } from 'src/app/models/task.model';
 import { IOption } from 'src/app/models/option.model';
 import { CategoryService } from 'src/app/services/task-category.service'
-import { isTruthy } from 'src/app/utils/rx-operators';
+import { isTruthy } from 'src/app/utils/rx-functions';
 
 @Component({
   selector: 'new-task-modal',
