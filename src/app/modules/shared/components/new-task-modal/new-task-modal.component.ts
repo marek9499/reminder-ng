@@ -2,9 +2,9 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { Modal } from 'src/app/enums/modal.enum';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TaskService } from 'src/app/services/task.service';
-import { BehaviorSubject, combineLatest, EMPTY, Observable, OperatorFunction, pipe, ReplaySubject, Subject, UnaryFunction } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { TaskStatus } from 'src/app/enums/task-progress.enum';
-import { filter, map, scan, startWith, take, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
+import { map, startWith, take, takeUntil } from 'rxjs/operators';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Task } from 'src/app/models/task.model';
 import { IOption } from 'src/app/models/option.model';
@@ -96,7 +96,7 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
         this.taskCategoryService.addedCategory$.pipe(isTruthy(), startWith([]))
       ]))
       .pipe(
-        map(([initial, added]: [IOption[], IOption | IOption[]]) => initial.concat(added as IOption)));
+        map(([initial, added]: [IOption[], IOption | IOption[]]) => initial.concat(added)));
   }
 
   ngOnDestroy(): void {
