@@ -1,4 +1,5 @@
 export enum TaskStatus {
-    Started = 'Started',
-    Completed = 'Completed'
+	STARTED = 'Started',
+	IN_PROGRESS = 'Progress',
+	COMPLETED = 'Completed'
 }

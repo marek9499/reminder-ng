@@ -1,57 +1,58 @@
-@import '../../../../../assets/breakpoints.scss';
+@import "../../../../../assets/breakpoints.scss";
 
 .task {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    box-sizing: border-box;
-    width: 100%;
-    background-color: white;
-    height: auto;
-    padding: 0px 20px 20px 20px;
-    margin-top: 20px;
-    margin-left: 20px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 300;
+	box-sizing: border-box;
+	width: 100%;
+	background-color: white;
+	height: auto;
+	padding: 0px 20px 20px 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+  border-radius: 5px;
 
-    @media only screen and (min-width: $large) {
-        width: 300px;
-    }
+	@media only screen and (min-width: $large) {
+		width: 300px;
+	}
 
-    &__top {
-        position: relative;
-    }
+	&__top {
+		position: relative;
+	}
 
-    &__date {
-        color: #a3a2a2;
-        font-size: 13px;
-        padding-top: 20px;
-    }
+	&__date {
+		color: #a3a2a2;
+		font-size: 13px;
+		padding-top: 20px;
+	}
 
-    &__settings {
-        position: absolute;
-        color: #a3a2a2;
-        right: 0px;
-        top: 10px;
-        padding: 10px;
-        &:hover {
-            cursor: pointer;
-        }
-    }
+	&__settings {
+		position: absolute;
+		color: #a3a2a2;
+		right: 0px;
+		top: 10px;
+		padding: 10px;
+		&:hover {
+			cursor: pointer;
+		}
+	}
 
-    &__title {
-        font-size: 24px;
-        font-weight: 500;
-        padding-top: 20px;
-    }
+	&__title {
+		font-size: 24px;
+		font-weight: 500;
+		padding-top: 20px;
+	}
 
-    &__description {
-        color: #656565;
-        font-size: 15px;
-        margin-top: 15px;
-        line-height: 1.5;
-        white-space: pre-line;
-    }
+	&__description {
+		color: #656565;
+		font-size: 15px;
+		margin-top: 15px;
+		line-height: 1.5;
+		white-space: pre-line;
+	}
 
-    &__status {
-        color: rgb(77, 202, 77);
-        padding-top: 20px;
-    }
+	&__status {
+		color: rgb(77, 202, 77);
+		padding-top: 20px;
+	}
 }

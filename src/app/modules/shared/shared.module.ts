@@ -15,6 +15,7 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material/material.module';
+import { BadgeComponent } from './components/badge/badge.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MaterialModule } from '../material/material.module';
     NewTaskModalComponent,
     NewCategoryModalComponent,
     InfoBoxComponent,
-    TaskItemComponent
+    TaskItemComponent,
+    BadgeComponent
   ],
   imports: [
     CommonModule,

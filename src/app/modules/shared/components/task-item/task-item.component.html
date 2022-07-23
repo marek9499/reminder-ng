@@ -1,6 +1,6 @@
 <div class="task">
 	<div class="task__top">
-		<ng-container *ngIf="task.finishDay !== null">
+		<ng-container *ngIf="task.finishDay">
 			<div class="task__date">
 				<fa-icon [icon]="faClock"></fa-icon> {{ finishDate }} ({{ finishDateDeadlineDays }})
 			</div>
@@ -9,7 +9,7 @@
 		<div class="task__settings" [matMenuTriggerFor]="menu">
 			<fa-icon [icon]="faEllipsisV"></fa-icon>
 			<mat-menu #menu="matMenu">
-				<button mat-menu-item (click)="setTaskFinished(task);">
+				<button mat-menu-item (click)="setTaskFinished(task)">
 					<mat-icon>done</mat-icon>
 					<span>Finished</span>
 				</button>
@@ -17,7 +17,7 @@
 					<mat-icon>edit</mat-icon>
 					<span>Edit</span>
 				</button>
-				<button mat-menu-item (click)="deleteTask(task.id);">
+				<button mat-menu-item (click)="deleteTask(task.id)">
 					<mat-icon>delete</mat-icon>
 					<span>Delete</span>
 				</button>
@@ -29,11 +29,13 @@
 		{{ task.title }}
 	</p>
 
+	<app-badge [status]="task.stage"></app-badge> //naprawic ;d
+
 	<div class="task__description">
 		{{ task.description }}
 	</div>
 
-	<ng-container *ngIf="task.stage === TaskStatus.Completed">
+	<ng-container *ngIf="task.stage === TaskStatus.COMPLETED">
 		<div class="task__status">
 			<fa-icon [icon]="faTick"></fa-icon> Completed
 		</div>

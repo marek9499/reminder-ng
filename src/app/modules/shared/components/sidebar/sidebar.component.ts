@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { IconDefinition, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { SidebarService } from 'src/app/services/sidebar.service';
 import { Observable } from 'rxjs';
@@ -8,15 +8,10 @@ import { Observable } from 'rxjs';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   public checkIcon: IconDefinition = faCheckCircle;
-  public isActive$: Observable<boolean>;
+  public isActive$: Observable<boolean> = this.sidebarService.getSidebarState();
 
   constructor(private readonly sidebarService: SidebarService) { }
-
-  ngOnInit(): void {
-    this.isActive$ = this.sidebarService.getSidebarState();
-  }
-
 }
 

@@ -18,30 +18,30 @@ export class TaskService {
   ) {}
 
   public getNewTaskCategories(): Observable<IOption[]> {
-    return this.http.get<IOption[]>(this.appConfiguration.apiEndpoint + ':3000/categories');
+    return this.http.get<IOption[]>(`${ this.appConfiguration.apiEndpoint }/categories`);
   }
 
-  public addNewTask(task: Task): Observable<Task> {
-    return this.http.post<Task>(this.appConfiguration.apiEndpoint + ':3000/tasks', task);
+  public addNewTask(task: Partial<Task>): Observable<Task> {
+    return this.http.post<Task>(`${ this.appConfiguration.apiEndpoint }/tasks`, task);
   }
 
   public addNewCategory(category: IOption): Observable<IOption> {
-    return this.http.post<IOption>(this.appConfiguration.apiEndpoint + ':3000/categories', category);
+    return this.http.post<IOption>(`${ this.appConfiguration.apiEndpoint }'/categories'`, category);
   }
 
   public getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.appConfiguration.apiEndpoint + ':3000/tasks');
+    return this.http.get<Task[]>(`${ this.appConfiguration.apiEndpoint }/tasks`);
   }
 
-  public deleteTask(taskId: number | undefined): Observable<Task> {
-    return this.http.delete<Task>(this.appConfiguration.apiEndpoint + `:3000/tasks/${taskId}`);
+  public deleteTask(taskId: number): Observable<Task> {
+    return this.http.delete<Task>(`${ this.appConfiguration.apiEndpoint }/tasks/${ taskId }`);
   }
 
   public markTaskStatusAs(taskPayload: Task, stageUpdateTo: TaskStatus): Observable<Task> {
     const updatePayload: Task = {
       ...taskPayload,
-      stage: TaskStatus.Completed
+      stage: TaskStatus.COMPLETED
     }
-    return this.http.put(this.appConfiguration.apiEndpoint + `:3000/tasks/${ updatePayload.id }`, updatePayload);
+    return this.http.put<Task>(`${ this.appConfiguration.apiEndpoint }/tasks/${ updatePayload.id }`, updatePayload);
   }
 }

@@ -1,7 +1,6 @@
 <button
-    (click)="handleClick($event)"
-    [ngClass]="['button', theme]"
-    [class.hiddenMobile]="hiddenMobile"
-    >
-    <ng-content></ng-content>
+	(click)="handleClick($event)"
+	[ngClass]="['button', theme]"
+	[class.hiddenMobile]="hiddenMobile">
+	<ng-content></ng-content>
 </button>

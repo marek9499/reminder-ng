@@ -3,7 +3,7 @@
 @import "~ngx-smart-modal/ngx-smart-modal";
 
 body {
-	background-color: #f9f9fb;
+	background-color: #d6d6d6;
 }
 
 .mat-form-field-underline {
@@ -37,7 +37,7 @@ body {
 		position: relative;
 		z-index: 100;
 		&:hover {
-				cursor: pointer;
+			cursor: pointer;
 		}
 	}
 
@@ -52,7 +52,7 @@ body {
 	--gap: 20px;
 	&__group {
 		margin-bottom: 25px;
-    display: block;
+		display: block;
 	}
 
 	&__col {
@@ -81,7 +81,7 @@ body {
 	display: inline-block;
 	letter-spacing: -1px;
 
-  &.error {
-    color: red;
-  }
+	&.error {
+		color: red;
+	}
 }

@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { TaskService } from 'src/app/services/task.service';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { TaskStatus } from 'src/app/enums/task-progress.enum';
-import { map, startWith, take, takeUntil } from 'rxjs/operators';
+import { map, startWith, take, takeUntil, tap } from 'rxjs/operators';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Task } from 'src/app/models/task.model';
 import { IOption } from 'src/app/models/option.model';
@@ -17,7 +17,7 @@ import { isTruthy } from 'src/app/utils/rx-functions';
   styleUrls: ['./new-task-modal.component.scss']
 })
 export class NewTaskModalComponent implements OnInit, OnDestroy {
-  @Output() onAddTask = new EventEmitter();
+  @Output() onAddTask: EventEmitter<Task> = new EventEmitter<Task>();
   private destroy$: Subject<boolean> = new Subject<boolean>();
   public modalIdentifier: Modal = Modal.NewTask;
   public addNewTaskForm: FormGroup;
@@ -49,25 +49,28 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
   }
 
   public submitCreateNewTask(): void {
-    console.log('DEBUGGING: isValidForm?', this.addNewTaskForm);
     this.hasSubmittedForm = true;
-    if(this.addNewTaskForm.valid === true) {
-      const taskPayload: Task = {
-        title: this.getControl('name').value,
-        description: this.getControl('description').value,
-        finishDay: this.getControl('finishDay').value ?? null,
-        finishHour: this.getControl('finishHour').value,
-        stage: TaskStatus.Started,
-        category: this.getControl('category').value,
-        updatedAt: new Date().getTime()
-      };
-
-      this.taskService
-        .addNewTask(taskPayload)
-        .pipe(take(1))
-        .subscribe(resp => this.onAddTask.emit(resp));
-      this.isNewTaskAdded = true;
+    if(!this.addNewTaskForm.valid) {
+      return;
     }
+
+    const newTaskPayload: Partial<Task> = {
+      title: this.getControl('name').value,
+      description: this.getControl('description').value,
+      finishDay: this.getControl('finishDay').value ?? null,
+      finishHour: this.getControl('finishHour').value,
+      stage: TaskStatus.STARTED,
+      category: this.getControl('category').value,
+      updatedAt: new Date().getTime()
+    };
+
+    this.taskService
+      .addNewTask(newTaskPayload)
+      .pipe(
+        take(1),
+        tap(() => this.isNewTaskAdded = true)
+      )
+      .subscribe((newTask: Task) => this.onAddTask.emit(newTask));
   }
 
   public clearTaskForm(): void {
@@ -90,13 +93,11 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
   }
 
   public getTaskCategoriesData(): Observable<IOption[]> {
-    return combineLatest((
-      [
-        this.taskCategoryService.initialCategories$.pipe(startWith([])),
-        this.taskCategoryService.addedCategory$.pipe(isTruthy(), startWith([]))
-      ]))
-      .pipe(
-        map(([initial, added]: [IOption[], IOption | IOption[]]) => initial.concat(added)));
+    return combineLatest(([
+      this.taskCategoryService.initialCategories$.pipe(startWith([])),
+      this.taskCategoryService.addedCategory$.pipe(isTruthy(), startWith([]))
+    ]))
+    .pipe(map(([initial, added]: [IOption[], IOption | IOption[]]) => initial.concat(added)));
   }
 
   ngOnDestroy(): void {

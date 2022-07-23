@@ -5,11 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './info-box.component.html',
   styleUrls: ['./info-box.component.scss']
 })
-export class InfoBoxComponent implements OnInit {
-
+export class InfoBoxComponent {
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

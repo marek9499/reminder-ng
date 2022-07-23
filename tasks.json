@@ -17,11 +17,13 @@
       "id": 3
     },
     {
-      "title": "task test 2",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "title": "dupaFS",
+      "description": "EEEEE",
+      "finishDay": "2022-07-21T22:00:00.000Z",
+      "finishHour": "13:00",
       "stage": "Started",
-      "category": "hello",
-      "updatedAt": 1635153682534,
+      "category": "test",
+      "updatedAt": 1658585506124,
       "id": 4
     }
   ],
