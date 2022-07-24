@@ -1,28 +1,35 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { filter, map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Task } from 'src/app/models/task.model';
-import { TaskService } from 'src/app/services/task.service';
+import { fetchTasks } from 'src/app/store/task.actions';
+import { TaskState } from 'src/app/store/task.reducer';
+import { getTasks } from './../../store/task.selector';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
-  public tasks$: Observable<Task[]> = this.taskService.getTasks();
+export class MainComponent implements OnInit {
+  public tasks$: Observable<Task[] | null> = this.store.pipe(select(getTasks))
 
-  constructor(private readonly taskService: TaskService) { }
+  constructor(private readonly store: Store<TaskState>) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(fetchTasks());
+  }
 
   public updateTaskList(action: string, task: Task): void {
-    if(action === 'onRemove') {
-      this.tasks$ = this.tasks$.pipe(map((tasks: Task[]) => {
-        return tasks.filter((taskFiltered: Task) => taskFiltered.id !== task.id)
-      }));
-    } else if(action === 'onAdd') {
-      this.tasks$ = this.tasks$.pipe(map((tasks: Task[]) => {
-        return [...tasks, task];
-      }))
-    }
+    // if(action === 'onRemove') {
+    //   this.tasks$ = this.tasks$.pipe(map((tasks: Task[]) => {
+    //     return tasks.filter((taskFiltered: Task) => taskFiltered.id !== task.id)
+    //   }));
+    // } else if(action === 'onAdd') {
+    //   this.tasks$ = this.tasks$.pipe(map((tasks: Task[]) => {
+    //     return [...tasks, task];
+    //   }))
+    // }
   }
 }
