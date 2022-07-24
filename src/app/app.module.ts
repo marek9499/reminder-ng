@@ -7,9 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './content/main/main.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
-import { tasksReducer } from './store/task.reducer';
+import { reducer } from './store/task.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { TaskEffects } from './store/task.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,11 @@ import { TaskEffects } from './store/task.effects';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    StoreModule.forRoot({ tasks: tasksReducer }),
-    EffectsModule.forRoot([TaskEffects])
+    StoreModule.forRoot({ tasks: reducer }),
+    EffectsModule.forRoot([TaskEffects]),
+    StoreDevtoolsModule.instrument({
+      name: 'NgRX TodoApp'
+    })
   ],
   providers: [
     { provide: APP_CONFIG, useValue: TODO_CONFIG }

@@ -2,9 +2,8 @@
 	<ng-container *ngIf="(tasks$ | async) as tasks">
 		<app-task-item
 			*ngFor="let task of tasks"
-			[task]="task"
-			(onTaskRemove)="updateTaskList('onRemove', task)">
+			[task]="task">
 		</app-task-item>
 	</ng-container>
-	<new-task-modal (onAddTask)="updateTaskList('onAdd', $event)"></new-task-modal>
+	<new-task-modal></new-task-modal> <!-- (onAddTask)="updateTaskList('onAdd', )" -->
 </main>

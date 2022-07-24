@@ -6,6 +6,9 @@ import { TaskService } from 'src/app/services/task.service';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import { take } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { TaskState } from 'src/app/store/task.reducer';
+import { RemoveTask } from 'src/app/store/task.actions';
 
 @Component({
   selector: 'app-task-item',
@@ -14,7 +17,6 @@ import { take } from 'rxjs/operators';
 })
 export class TaskItemComponent implements OnInit, OnChanges {
   @Input() task: Task;
-  @Output() onTaskRemove: EventEmitter<Task> = new EventEmitter<Task>();
   @Output() onTaskUpdateStatus = new EventEmitter();
 
   public finishDate: string | Moment;
@@ -24,7 +26,9 @@ export class TaskItemComponent implements OnInit, OnChanges {
   public faTick: IconDefinition = faCheckCircle;
   public TaskStatus = TaskStatus;
 
-  constructor(private readonly taskService: TaskService) { }
+  constructor(
+    private readonly taskService: TaskService,
+    private readonly store: Store<TaskState>) { }
 
   ngOnInit(): void {}
 
@@ -36,17 +40,18 @@ export class TaskItemComponent implements OnInit, OnChanges {
     }
   }
 
-  public deleteTask(taskId: number): void {
-    this.taskService
-      .deleteTask(taskId)
-      .pipe(take(1))
-      .subscribe((resp: Task) => this.onTaskRemove.emit(resp));
-  }
-
   public setTaskFinished(task: Task): void {
     this.taskService
       .markTaskStatusAs(task, TaskStatus.COMPLETED)
       .pipe(take(1))
       .subscribe((resp: Task) => this.task.stage = resp.stage);
+  }
+
+  public removeTask(id: number): void {
+    this.store.dispatch(
+      RemoveTask({
+        id: id
+      })
+    );
   }
 }

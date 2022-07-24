@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { tap, switchMap, map } from 'rxjs/operators'
 import { Task } from "../models/task.model";
 import { TaskService } from "../services/task.service";
-import { addTasks } from "./task.actions";
+import * as TaskActions from "./task.actions";
 
 @Injectable()
 export class TaskEffects {
@@ -13,17 +13,23 @@ export class TaskEffects {
 		private readonly taskService: TaskService
 	){}
 
-	fetchTasksStart$: any = createEffect(() => {
+	private readonly fetchTasksStart$: Observable<any> = createEffect(() => {
 		return this.actions$.pipe(
-			ofType(this.fetchTasksStart$),
-			tap(() => {
-				console.log('fetchTasksStart')
-			}),
-			switchMap(() => {
-				return this.taskService.getTasks().pipe(
-					map((task: Task[]) => addTasks({ tasks: task }))
-				)
-			})
+			ofType(TaskActions.LoadTasks),
+			switchMap(() => this.taskService.getTasks()),
+			map((data: Task[]) => TaskActions.LoadTasksSuccess({ data }))
 		);
-	}, { dispatch: false })
+	});
+
+	private readonly removeTask$: Observable<any> = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(TaskActions.RemoveTask),
+			switchMap(({id}) => {
+				return this.taskService.deleteTask(id).pipe(
+					map(() => id)
+				)
+			}),
+			map((removedTaskId: number) => TaskActions.RemoveTaskSuccess({ id: removedTaskId }))
+		);
+	});
 }

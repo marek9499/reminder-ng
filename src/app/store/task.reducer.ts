@@ -1,28 +1,28 @@
 import { state } from '@angular/animations';
-import { createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { Task } from '../models/task.model';
-import { fetchTasks, addTasks } from './task.actions';
+import * as TaskActions from './task.actions';
 
 export interface TaskState {
-  tasks: Task[] | null;
+  tasks: Task[];
 }
 
 export const initialState: TaskState = {
-  tasks: null
+  tasks: []
 }
 
-export const tasksReducer = createReducer<TaskState>(
+const tasksReducer = createReducer<TaskState>(
   initialState,
-  on(fetchTasks, (state, action): TaskState => {
-    return {
-      ...state,
-      tasks: []
-    }
-  }),
-  on(addTasks, (state, { tasks }): TaskState => {
-    return {
-      ...state,
-      tasks: tasks
-    }
-  })
+  on(TaskActions.LoadTasksSuccess, (state, action): TaskState => ({
+    ...state,
+    tasks: action.data
+  })),
+  on(TaskActions.RemoveTaskSuccess, (state, action): TaskState => ({
+    ...state,
+    tasks: state.tasks.filter((taskFiltered: Task) => taskFiltered.id !== action.id)
+  }))
 );
+
+export function reducer(state: TaskState | undefined, action: Action) {
+  return tasksReducer(state, action);
+}

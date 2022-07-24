@@ -43,10 +43,10 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
       important: [null, [Validators.required]]
     });
 
-    this.taskService
-      .getNewTaskCategories()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((categories: IOption[]) => this.taskCategoryService.initialCategories$.next(categories));
+    // this.taskService
+    //   .getNewTaskCategories()
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((categories: IOption[]) => this.taskCategoryService.initialCategories$.next(categories));
 
     this.addNewTaskForm.get('important')?.valueChanges.subscribe(resp => {
       console.log('new val!', resp);
