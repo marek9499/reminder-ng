@@ -6,6 +6,7 @@
       "stage": "Started",
       "category": "hello",
       "updatedAt": 1635153674254,
+      "isImportant": false,
       "id": 2
     },
     {
@@ -14,6 +15,7 @@
       "stage": "Started",
       "category": "hello",
       "updatedAt": 1635153679428,
+      "isImportant": false,
       "id": 3
     },
     {
@@ -24,7 +26,19 @@
       "stage": "Started",
       "category": "test",
       "updatedAt": 1658585506124,
+      "isImportant": true,
       "id": 4
+    },
+    {
+      "title": "dsfsaf",
+      "description": "sadfsadf",
+      "finishDay": "",
+      "finishHour": "",
+      "stage": "Started",
+      "category": "",
+      "updatedAt": 1658667675967,
+      "isImportant": true,
+      "id": 5
     }
   ],
   "categories": [

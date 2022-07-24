@@ -1,10 +1,8 @@
 <div class="task">
 	<div class="task__top">
-		<ng-container *ngIf="task.finishDay">
-			<div class="task__date">
-				<fa-icon [icon]="faClock"></fa-icon> {{ finishDate }} ({{ finishDateDeadlineDays }})
-			</div>
-		</ng-container>
+		<p class="task__title">
+			{{ task.title }}
+		</p>
 
 		<div class="task__settings" [matMenuTriggerFor]="menu">
 			<fa-icon [icon]="faEllipsisV"></fa-icon>
@@ -25,11 +23,13 @@
 		</div>
 	</div>
 
-	<p class="task__title">
-		{{ task.title }}
-	</p>
+	<ng-container *ngIf="task.finishDay">
+		<div class="task__date">
+			<fa-icon [icon]="faClock"></fa-icon> {{ finishDate }} ({{ finishDateDeadlineDays }})
+		</div>
+	</ng-container>
 
-	<app-badge [status]="task.stage"></app-badge> //naprawic ;d
+	<app-badge [status]="task.stage"></app-badge>
 
 	<div class="task__description">
 		{{ task.description }}

@@ -1,0 +1,12 @@
+.badge {
+	padding: 10px 15px 10px 15px;
+	border-radius: 5px;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 12px;
+	margin-top: 15px;
+	&__Started {
+		background-color: #fff9db;
+		color: #f59f00;
+	}
+}

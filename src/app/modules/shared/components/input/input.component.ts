@@ -62,13 +62,8 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     this.disabled = isBoolean;
   }
 
-  public updateTime(event: string): void {
+  public writeInputData(event: any): void {
     this.onChange(event);
     this.writeValue(event);
-  }
-
-  public updateDate(event: MatSelectChange): void {
-    this.onChange(event.value);
-    this.writeValue(event.value);
   }
 }

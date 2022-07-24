@@ -7,7 +7,7 @@
 	width: 100%;
 	background-color: white;
 	height: auto;
-	padding: 0px 20px 20px 20px;
+	padding: 20px 20px 20px 20px;
 	margin-top: 20px;
 	margin-left: 20px;
   border-radius: 5px;
@@ -17,21 +17,20 @@
 	}
 
 	&__top {
-		position: relative;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	&__date {
 		color: #a3a2a2;
-		font-size: 13px;
-		padding-top: 20px;
+		font-size: 12px;
+		padding-top: 5px;
 	}
 
 	&__settings {
-		position: absolute;
 		color: #a3a2a2;
-		right: 0px;
-		top: 10px;
-		padding: 10px;
+		//padding: 10px;
 		&:hover {
 			cursor: pointer;
 		}
@@ -40,7 +39,6 @@
 	&__title {
 		font-size: 24px;
 		font-weight: 500;
-		padding-top: 20px;
 	}
 
 	&__description {

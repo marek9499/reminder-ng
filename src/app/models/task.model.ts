@@ -7,4 +7,5 @@ export interface Task {
     stage: string;
     category: string;
     updatedAt: number;
+    isImportant: boolean;
 }

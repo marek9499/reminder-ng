@@ -16,7 +16,11 @@
             getControl('name').invalid === true">
           Task name
         </label>
-        <app-input type="input" formControlName="name" identifier="taskname" placeholder="Enter task's new name"
+        <app-input
+          type="input"
+          formControlName="name"
+          identifier="taskname"
+          placeholder="Enter task's new name"
           [isFormSubmitted]="hasSubmittedForm">
         </app-input>
       </div>
@@ -36,6 +40,24 @@
           formControlName="description"
           identifier="description"
           placeholder="Enter task's description"
+          [isFormSubmitted]="hasSubmittedForm">
+        </app-input>
+      </div>
+
+      <div class="form__group">
+        <label
+          for="important"
+          class="label"
+          [class.error]="
+            getControl('important').touched === true &&
+            getControl('important').errors || hasSubmittedForm === true &&
+            getControl('important').invalid === true">
+          Is important?
+        </label>
+        <app-input
+          type="radio"
+          formControlName="important"
+          identifier="important"
           [isFormSubmitted]="hasSubmittedForm">
         </app-input>
       </div>

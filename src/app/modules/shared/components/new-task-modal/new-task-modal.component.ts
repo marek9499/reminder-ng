@@ -39,17 +39,23 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
       description: ['', [Validators.nullValidator]],
       finishDay: ['', Validators.nullValidator],
       finishHour: ['', Validators.nullValidator],
-      category: ['', [Validators.nullValidator]]
+      category: ['', [Validators.nullValidator]],
+      important: [null, [Validators.required]]
     });
 
     this.taskService
       .getNewTaskCategories()
       .pipe(takeUntil(this.destroy$))
       .subscribe((categories: IOption[]) => this.taskCategoryService.initialCategories$.next(categories));
+
+    this.addNewTaskForm.get('important')?.valueChanges.subscribe(resp => {
+      console.log('new val!', resp);
+    })
   }
 
   public submitCreateNewTask(): void {
     this.hasSubmittedForm = true;
+    console.log('form', this.addNewTaskForm);
     if(!this.addNewTaskForm.valid) {
       return;
     }
@@ -61,7 +67,8 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
       finishHour: this.getControl('finishHour').value,
       stage: TaskStatus.STARTED,
       category: this.getControl('category').value,
-      updatedAt: new Date().getTime()
+      updatedAt: new Date().getTime(),
+      isImportant: this.getControl('important').value
     };
 
     this.taskService
