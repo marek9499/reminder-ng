@@ -1,15 +1,19 @@
 <div class="task">
 	<div class="task__top">
 		<p class="task__title">
-			{{ task.title }}
+			{{ task.title }} ({{task.id}})
 		</p>
 
 		<div class="task__settings" [matMenuTriggerFor]="menu">
 			<fa-icon [icon]="faEllipsisV"></fa-icon>
 			<mat-menu #menu="matMenu">
-				<button mat-menu-item (click)="setTaskFinished(task)">
+				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatus.COMPLETED)">
 					<mat-icon>done</mat-icon>
 					<span>Finished</span>
+				</button>
+				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatus.IN_PROGRESS)">
+					<mat-icon>build</mat-icon>
+					<span>In Progress</span>
 				</button>
 				<button mat-menu-item disabled>
 					<mat-icon>edit</mat-icon>
@@ -34,10 +38,4 @@
 	<div class="task__description">
 		{{ task.description }}
 	</div>
-
-	<ng-container *ngIf="task.stage === TaskStatus.COMPLETED">
-		<div class="task__status">
-			<fa-icon [icon]="faTick"></fa-icon> Completed
-		</div>
-	</ng-container>
 </div>

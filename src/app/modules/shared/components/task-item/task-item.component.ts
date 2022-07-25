@@ -8,7 +8,7 @@ import { Moment } from 'moment';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { TaskState } from 'src/app/store/task.reducer';
-import { RemoveTask } from 'src/app/store/task.actions';
+import { EditTaskStage, RemoveTask } from 'src/app/store/task.actions';
 
 @Component({
   selector: 'app-task-item',
@@ -40,11 +40,8 @@ export class TaskItemComponent implements OnInit, OnChanges {
     }
   }
 
-  public setTaskFinished(task: Task): void {
-    this.taskService
-      .markTaskStatusAs(task, TaskStatus.COMPLETED)
-      .pipe(take(1))
-      .subscribe((resp: Task) => this.task.stage = resp.stage);
+  public editTaskStage(taskId: number, stage: TaskStatus): void {
+    this.store.dispatch(EditTaskStage({ id: taskId, stage: stage }))
   }
 
   public removeTask(id: number): void {

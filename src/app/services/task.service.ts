@@ -37,11 +37,10 @@ export class TaskService {
     return this.http.delete<Task>(`${ this.appConfiguration.apiEndpoint }/tasks/${ taskId }`);
   }
 
-  public markTaskStatusAs(taskPayload: Task, stageUpdateTo: TaskStatus): Observable<Task> {
-    const updatePayload: Task = {
-      ...taskPayload,
+  public markTaskStatusAs(taskId: number, stageUpdateTo: TaskStatus): Observable<Task> {
+    const updatePayload: Partial<Task> = {
       stage: TaskStatus.COMPLETED
     }
-    return this.http.put<Task>(`${ this.appConfiguration.apiEndpoint }/tasks/${ updatePayload.id }`, updatePayload);
+    return this.http.put<Task>(`${ this.appConfiguration.apiEndpoint }/tasks/${ taskId }`, updatePayload);
   }
 }

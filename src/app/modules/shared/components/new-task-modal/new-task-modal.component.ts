@@ -10,6 +10,9 @@ import { Task } from 'src/app/models/task.model';
 import { IOption } from 'src/app/models/option.model';
 import { CategoryService } from 'src/app/services/task-category.service'
 import { isTruthy } from 'src/app/utils/rx-functions';
+import { Store } from '@ngrx/store';
+import { TaskState } from 'src/app/store/task.reducer';
+import { AddTask } from 'src/app/store/task.actions';
 
 @Component({
   selector: 'new-task-modal',
@@ -17,7 +20,6 @@ import { isTruthy } from 'src/app/utils/rx-functions';
   styleUrls: ['./new-task-modal.component.scss']
 })
 export class NewTaskModalComponent implements OnInit, OnDestroy {
-  @Output() onAddTask: EventEmitter<Task> = new EventEmitter<Task>();
   private destroy$: Subject<boolean> = new Subject<boolean>();
   public modalIdentifier: Modal = Modal.NewTask;
   public addNewTaskForm: FormGroup;
@@ -28,7 +30,7 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly taskService: TaskService,
+    private readonly store: Store<TaskState>,
     private readonly modal: NgxSmartModalService,
     private readonly taskCategoryService: CategoryService
   ) { }
@@ -47,15 +49,10 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
     //   .getNewTaskCategories()
     //   .pipe(takeUntil(this.destroy$))
     //   .subscribe((categories: IOption[]) => this.taskCategoryService.initialCategories$.next(categories));
-
-    this.addNewTaskForm.get('important')?.valueChanges.subscribe(resp => {
-      console.log('new val!', resp);
-    })
   }
 
   public submitCreateNewTask(): void {
     this.hasSubmittedForm = true;
-    console.log('form', this.addNewTaskForm);
     if(!this.addNewTaskForm.valid) {
       return;
     }
@@ -71,13 +68,7 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
       isImportant: this.getControl('important').value
     };
 
-    this.taskService
-      .addNewTask(newTaskPayload)
-      .pipe(
-        take(1),
-        tap(() => this.isNewTaskAdded = true)
-      )
-      .subscribe((newTask: Task) => this.onAddTask.emit(newTask));
+    this.store.dispatch(AddTask({ task: newTaskPayload }));
   }
 
   public clearTaskForm(): void {
