@@ -2,9 +2,9 @@
 	<p class="sidebar__title">TodoApp</p>
 
 	<ul class="todo__list todo__wrapper">
-		<li class="todo__item" (click)="changeTaskState(DisplayMode.RECENT)">Recent <span class="todo__indicator">123</span></li>
-		<li class="todo__item" (click)="changeTaskState(DisplayMode.STARTED)">To do</li>
-		<li class="todo__item">In progress</li>
-		<li class="todo__item">Finished</li>
+		<li class="todo__item" (click)="showTasksByStage(TaskStage.RECENT)">Recent <span class="todo__indicator">{{ getTaskStageLength(TaskStage.RECENT) | async }}</span></li>
+		<li class="todo__item" (click)="showTasksByStage(TaskStage.STARTED)">Started <span class="todo__indicator">{{ getTaskStageLength(TaskStage.STARTED) | async }}</span></li>
+		<li class="todo__item" (click)="showTasksByStage(TaskStage.IN_PROGRESS)">In progress</li>
+		<li class="todo__item" (click)="showTasksByStage(TaskStage.COMPLETED)">Completed</li>
 	</ul>
 </div>

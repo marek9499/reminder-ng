@@ -1,6 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { DisplayMode } from "../enums/display-mode.enum";
-import { TaskStatus } from "../enums/task-progress.enum";
+import { TaskStatusStage } from "../enums/task-progress.enum";
 import { Task } from "../models/task.model";
 import { TaskActionTypes } from "./task.types";
 
@@ -33,15 +32,15 @@ export const AddTaskSuccess = createAction(
 
 export const EditTaskStage = createAction(
 	TaskActionTypes.EDIT,
-	props<{ id: number, stage: TaskStatus }>()
+	props<{ id: number, stage: TaskStatusStage }>()
 );
 
 export const EditTaskStageSuccess = createAction(
 	TaskActionTypes.EDIT_SUCCESS,
-	props<{ id: number, stage: TaskStatus }>()
+	props<{ id: number, stage: TaskStatusStage }>()
 );
 
-export const ChangeTaskDisplayMode = createAction(
+export const ShowTasksByStage = createAction(
 	TaskActionTypes.CHANGE_DISPLAY_MODE,
-	props<{ mode: DisplayMode }>()
+	props<{ mode: TaskStatusStage }>()
 );

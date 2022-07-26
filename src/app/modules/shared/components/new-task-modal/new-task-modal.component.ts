@@ -3,7 +3,6 @@ import { Modal } from 'src/app/enums/modal.enum';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TaskService } from 'src/app/services/task.service';
 import { combineLatest, Observable, Subject } from 'rxjs';
-import { TaskStatus } from 'src/app/enums/task-progress.enum';
 import { map, startWith, take, takeUntil, tap } from 'rxjs/operators';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Task } from 'src/app/models/task.model';
@@ -13,6 +12,7 @@ import { isTruthy } from 'src/app/utils/rx-functions';
 import { Store } from '@ngrx/store';
 import { TaskState } from 'src/app/store/task.reducer';
 import { AddTask } from 'src/app/store/task.actions';
+import { TaskStatusStage } from 'src/app/enums/task-progress.enum';
 
 @Component({
   selector: 'new-task-modal',
@@ -62,7 +62,7 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
       description: this.getControl('description').value,
       finishDay: this.getControl('finishDay').value ?? null,
       finishHour: this.getControl('finishHour').value,
-      stage: TaskStatus.STARTED,
+      stage: TaskStatusStage.STARTED,
       category: this.getControl('category').value,
       updatedAt: new Date().getTime(),
       isImportant: this.getControl('important').value

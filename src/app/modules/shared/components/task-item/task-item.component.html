@@ -7,11 +7,11 @@
 		<div class="task__settings" [matMenuTriggerFor]="menu">
 			<fa-icon [icon]="faEllipsisV"></fa-icon>
 			<mat-menu #menu="matMenu">
-				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatus.COMPLETED)">
+				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatusStage.COMPLETED)">
 					<mat-icon>done</mat-icon>
 					<span>Finished</span>
 				</button>
-				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatus.IN_PROGRESS)">
+				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatusStage.IN_PROGRESS)">
 					<mat-icon>build</mat-icon>
 					<span>In Progress</span>
 				</button>

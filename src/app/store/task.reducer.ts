@@ -1,17 +1,17 @@
 import { state } from '@angular/animations';
 import { Action, createReducer, on } from '@ngrx/store';
-import { DisplayMode } from '../enums/display-mode.enum';
+import { TaskStatusStage } from '../enums/task-progress.enum';
 import { Task } from '../models/task.model';
 import * as TaskActions from './task.actions';
 
 export interface TaskState {
   tasks: Task[];
-  displayMode: DisplayMode;
+  showByStage: TaskStatusStage;
 }
 
 export const initialState: TaskState = {
   tasks: [],
-  displayMode: DisplayMode.RECENT
+  showByStage: TaskStatusStage.RECENT
 }
 
 const tasksReducer = createReducer<TaskState>(
@@ -41,10 +41,9 @@ const tasksReducer = createReducer<TaskState>(
       tasks: modifiedArrayData
     }
   }),
-  on(TaskActions.ChangeTaskDisplayMode, (state, action): TaskState => ({
+  on(TaskActions.ShowTasksByStage, (state, action): TaskState => ({
     ...state,
-    tasks: state.tasks,
-    displayMode: action.mode
+    showByStage: action.mode
   }))
 );
 

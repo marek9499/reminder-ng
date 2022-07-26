@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { IconDefinition, faEllipsisV, faClock, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Task } from 'src/app/models/task.model';
-import { TaskStatus } from 'src/app/enums/task-progress.enum';
 import { TaskService } from 'src/app/services/task.service';
 import * as moment from 'moment';
 import { Moment } from 'moment';
@@ -9,6 +8,7 @@ import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { TaskState } from 'src/app/store/task.reducer';
 import { EditTaskStage, RemoveTask } from 'src/app/store/task.actions';
+import { TaskStatusStage } from 'src/app/enums/task-progress.enum';
 
 @Component({
   selector: 'app-task-item',
@@ -24,7 +24,7 @@ export class TaskItemComponent implements OnInit, OnChanges {
   public faEllipsisV: IconDefinition = faEllipsisV;
   public faClock: IconDefinition = faClock;
   public faTick: IconDefinition = faCheckCircle;
-  public TaskStatus = TaskStatus;
+  public TaskStatusStage = TaskStatusStage;
 
   constructor(
     private readonly taskService: TaskService,
@@ -40,7 +40,7 @@ export class TaskItemComponent implements OnInit, OnChanges {
     }
   }
 
-  public editTaskStage(taskId: number, stage: TaskStatus): void {
+  public editTaskStage(taskId: number, stage: TaskStatusStage): void {
     this.store.dispatch(EditTaskStage({ id: taskId, stage: stage }))
   }
 

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { APP_CONFIG } from '../app.config';
-import { TaskStatus } from '../enums/task-progress.enum';
+import { TaskStatusStage } from '../enums/task-progress.enum';
 import { AppConfig } from '../models/config.model';
 import { IOption } from '../models/option.model';
 import { Task } from '../models/task.model';
@@ -37,9 +37,9 @@ export class TaskService {
     return this.http.delete<Task>(`${ this.appConfiguration.apiEndpoint }/tasks/${ taskId }`);
   }
 
-  public markTaskStatusAs(taskId: number, stageUpdateTo: TaskStatus): Observable<Task> {
+  public markTaskStatusAs(taskId: number, stageUpdateTo: TaskStatusStage): Observable<Task> {
     const updatePayload: Partial<Task> = {
-      stage: TaskStatus.COMPLETED
+      stage: stageUpdateTo
     }
     return this.http.put<Task>(`${ this.appConfiguration.apiEndpoint }/tasks/${ taskId }`, updatePayload);
   }
