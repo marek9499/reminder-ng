@@ -16,7 +16,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material/material.module';
 import { BadgeComponent } from './components/badge/badge.component';
-import { TestPipe } from './pipes/test.pipe';
+import { TaskStageLengthPipe } from './pipes/taskStageLength.pipe';
 
 
 @NgModule({
@@ -30,7 +30,7 @@ import { TestPipe } from './pipes/test.pipe';
     InfoBoxComponent,
     TaskItemComponent,
     BadgeComponent,
-    TestPipe
+    TaskStageLengthPipe
   ],
   imports: [
     CommonModule,
@@ -47,7 +47,7 @@ import { TestPipe } from './pipes/test.pipe';
     HeaderComponent,
     SidebarComponent,
     MaterialModule,
-    TestPipe
+    TaskStageLengthPipe
   ]
 })
 export class SharedModule { }

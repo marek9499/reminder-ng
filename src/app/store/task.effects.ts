@@ -47,7 +47,7 @@ export class TaskEffects {
 		return this.actions$.pipe(
 			ofType(TaskActions.EditTaskStage),
 			switchMap(({id, stage}) => {
-				return this.taskService.markTaskStatusAs(id, stage).pipe(
+				return this.taskService.markTaskStageAs(id, stage).pipe(
 					map((task: Task) => {
 						return { taskId: task.id, stage: stage }
 					})

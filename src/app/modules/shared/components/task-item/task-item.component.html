@@ -1,15 +1,19 @@
 <div class="task">
 	<div class="task__top">
 		<p class="task__title">
-			{{ task.title }} ({{task.id}})
+			{{ task.title }}
 		</p>
 
 		<div class="task__settings" [matMenuTriggerFor]="menu">
 			<fa-icon [icon]="faEllipsisV"></fa-icon>
 			<mat-menu #menu="matMenu">
-				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatusStage.COMPLETED)">
-					<mat-icon>done</mat-icon>
-					<span>Finished</span>
+				<button mat-menu-item (click)="removeTask(task.id)">
+					<mat-icon>delete</mat-icon>
+					<span>Delete</span>
+				</button>
+				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatusStage.TODO)">
+					<mat-icon>note_add</mat-icon>
+					<span>To do</span>
 				</button>
 				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatusStage.IN_PROGRESS)">
 					<mat-icon>build</mat-icon>
@@ -19,9 +23,9 @@
 					<mat-icon>edit</mat-icon>
 					<span>Edit</span>
 				</button>
-				<button mat-menu-item (click)="removeTask(task.id)">
-					<mat-icon>delete</mat-icon>
-					<span>Delete</span>
+				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatusStage.COMPLETED)">
+					<mat-icon>done</mat-icon>
+					<span>Completed</span>
 				</button>
 			</mat-menu>
 		</div>

@@ -23,13 +23,8 @@ export const getTasksBy = (taskStatusStage: TaskStatusStage) => createSelector(
 
 export const getTasksByStageLength = (taskStatusStage: TaskStatusStage) => createSelector(
   getTasksState,
-  (state: TaskState) => {
-    if (taskStatusStage === TaskStatusStage.RECENT) {
-      return state.tasks.length;
-    }
-
-    return state.tasks.filter((task: Task) => task.stage === taskStatusStage).length
-  }
+  getTasksBy(taskStatusStage),
+  (state: TaskState, task: Task[]) => task.length
 )
 
 export const getDisplayMode = createSelector(

@@ -62,7 +62,7 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
       description: this.getControl('description').value,
       finishDay: this.getControl('finishDay').value ?? null,
       finishHour: this.getControl('finishHour').value,
-      stage: TaskStatusStage.STARTED,
+      stage: TaskStatusStage.TODO,
       category: this.getControl('category').value,
       updatedAt: new Date().getTime(),
       isImportant: this.getControl('important').value

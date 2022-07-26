@@ -26,13 +26,5 @@ export class SidebarComponent {
   public showTasksByStage(stage: TaskStatusStage): void {
     this.store.dispatch(ShowTasksByStage({ mode: stage }))
   }
-
-  public getTaskStageLength(stage: TaskStatusStage): Observable<number> {
-    console.log('calling!');
-    this.store.pipe(select(getTasksByStageLength(stage))).subscribe(resp => {
-      console.log(resp)
-    })
-    return this.store.pipe(select(getTasksByStageLength(stage)))
-  }
 }
 

@@ -2,9 +2,17 @@
 	<p class="sidebar__title">TodoApp</p>
 
 	<ul class="todo__list todo__wrapper">
-		<li class="todo__item" (click)="showTasksByStage(TaskStage.RECENT)">Recent <span class="todo__indicator">{{ getTaskStageLength(TaskStage.RECENT) | async }}</span></li>
-		<li class="todo__item" (click)="showTasksByStage(TaskStage.STARTED)">Started <span class="todo__indicator">{{ getTaskStageLength(TaskStage.STARTED) | async }}</span></li>
-		<li class="todo__item" (click)="showTasksByStage(TaskStage.IN_PROGRESS)">In progress</li>
-		<li class="todo__item" (click)="showTasksByStage(TaskStage.COMPLETED)">Completed</li>
+		<li class="todo__item" (click)="showTasksByStage(TaskStage.RECENT)">Recent
+			<span class="todo__indicator">{{ TaskStage.RECENT | taskStageLength | async }}</span>
+		</li>
+		<li class="todo__item" (click)="showTasksByStage(TaskStage.TODO)">Todo
+			<span class="todo__indicator">{{ TaskStage.TODO | taskStageLength | async }}</span>
+		</li>
+		<li class="todo__item" (click)="showTasksByStage(TaskStage.IN_PROGRESS)">In progress
+			<span class="todo__indicator">{{ TaskStage.IN_PROGRESS | taskStageLength | async }}</span>
+		</li>
+		<li class="todo__item" (click)="showTasksByStage(TaskStage.COMPLETED)">Completed
+			<span class="todo__indicator">{{ TaskStage.COMPLETED | taskStageLength | async }}</span>
+		</li>
 	</ul>
 </div>

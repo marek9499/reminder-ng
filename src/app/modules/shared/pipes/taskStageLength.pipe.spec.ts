@@ -1,8 +1,8 @@
-import { TestPipe } from './test.pipe';
+import { TaskStageLengthPipe } from './taskStageLength.pipe';
 
 describe('TestPipe', () => {
   it('create an instance', () => {
-    const pipe = new TestPipe();
+    const pipe = new TaskStageLengthPipe();
     expect(pipe).toBeTruthy();
   });
 });
