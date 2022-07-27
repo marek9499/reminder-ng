@@ -3,7 +3,7 @@ import { TaskStatusStage } from '../enums/task-progress.enum';
 import { Task } from '../models/task.model';
 import { TaskState } from './task.reducer';
 
-export const getTasksState = createFeatureSelector<TaskState>('tasks');
+export const getTasksState = createFeatureSelector<TaskState>('todoApp');
 
 export const getRecentTasks = createSelector(
   getTasksState,
@@ -30,4 +30,9 @@ export const getTasksByStageLength = (taskStatusStage: TaskStatusStage) => creat
 export const getDisplayMode = createSelector(
   getTasksState,
   (state: TaskState) => state.showByStage
+)
+
+export const getTasksCategories = createSelector(
+  getTasksState,
+  (state: TaskState) => state.categories
 )

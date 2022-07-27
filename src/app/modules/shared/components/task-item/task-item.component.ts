@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { IconDefinition, faEllipsisV, faClock, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faEllipsisV, faClock, faCheckCircle, faFlag, faFontAwesome } from '@fortawesome/free-solid-svg-icons';
 import { Task } from 'src/app/models/task.model';
 import { TaskService } from 'src/app/services/task.service';
 import * as moment from 'moment';
@@ -24,11 +24,14 @@ export class TaskItemComponent implements OnInit, OnChanges {
   public faEllipsisV: IconDefinition = faEllipsisV;
   public faClock: IconDefinition = faClock;
   public faTick: IconDefinition = faCheckCircle;
+  public faFlag: IconDefinition = faFlag;
+  public faFontAwesome: IconDefinition = faFontAwesome;
+  public isImportantTaskIcon: boolean;
   public TaskStatusStage = TaskStatusStage;
 
   constructor(
-    private readonly taskService: TaskService,
-    private readonly store: Store<TaskState>) { }
+    private readonly store: Store<TaskState>
+  ) { }
 
   ngOnInit(): void {}
 
@@ -36,7 +39,8 @@ export class TaskItemComponent implements OnInit, OnChanges {
     if(changes.task.currentValue) {
       const currentTask = changes.task.currentValue;
       this.finishDate = moment(currentTask.finishDate).format("Do MMM");
-      this.finishDateDeadlineDays = moment(currentTask.finishDate).endOf('day').fromNow(); 
+      this.finishDateDeadlineDays = moment(currentTask.finishDate).endOf('day').fromNow();
+      this.isImportantTaskIcon = changes.task.currentValue.isImportant ? true : false;
     }
   }
 

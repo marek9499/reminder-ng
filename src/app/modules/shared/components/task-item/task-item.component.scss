@@ -7,7 +7,7 @@
 	width: 100%;
 	background-color: white;
 	height: auto;
-	padding: 20px 20px 20px 20px;
+	//padding: 20px 20px 20px 20px;
 	margin-top: 20px;
 	margin-left: 20px;
   border-radius: 5px;
@@ -20,12 +20,13 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		padding: 20px 20px 0px 20px;
 	}
 
 	&__date {
 		color: #a3a2a2;
 		font-size: 12px;
-		padding-top: 5px;
+		padding-left: 10px;
 	}
 
 	&__settings {
@@ -42,10 +43,30 @@
 	}
 
 	&__description {
-		color: #656565;
 		font-size: 15px;
-		margin-top: 15px;
+		padding: 20px;
 		line-height: 1.5;
 		white-space: pre-line;
+	}
+
+	&__badge {
+		padding-left: 20px;
+	}
+
+	&__footer {
+		display: flex;
+		padding: 20px;
+		align-items: center;
+
+		fa-icon {
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+
+	hr {
+		margin: 0;
+		border: .5px solid #f2f3f5;
 	}
 }

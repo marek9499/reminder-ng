@@ -22,7 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    StoreModule.forRoot({ tasks: reducer }),
+    StoreModule.forRoot({ todoApp: reducer }),
     EffectsModule.forRoot([TaskEffects]),
     StoreDevtoolsModule.instrument({
       name: 'NgRX TodoApp'

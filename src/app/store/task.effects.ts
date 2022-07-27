@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { TypedAction } from "@ngrx/store/src/models";
 import { Observable } from "rxjs";
-import { tap, switchMap, map } from 'rxjs/operators'
+import { switchMap, map } from 'rxjs/operators'
+import { IOption } from "../models/option.model";
 import { Task } from "../models/task.model";
 import { TaskService } from "../services/task.service";
 import * as TaskActions from "./task.actions";
-import { TaskActionTypes } from "./task.types";
 
 @Injectable()
 export class TaskEffects {
@@ -54,6 +53,14 @@ export class TaskEffects {
 				)
 			}),
 			map(({taskId, stage}) => TaskActions.EditTaskStageSuccess({ id: taskId, stage: stage }))
+		)
+	});
+
+	private readonly loadCategories$: Observable<any> = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(TaskActions.LoadCategories),
+			switchMap(() => this.taskService.getNewTaskCategories()),
+			map((data: IOption[]) => TaskActions.LoadCategoriesSuccess({ data }))
 		)
 	});
 }

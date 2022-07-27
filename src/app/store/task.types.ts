@@ -1,11 +1,13 @@
 export enum TaskActionTypes {
-	LOAD = '[Tasks] Load',
-	LOAD_SUCCESS = '[Tasks] Load success',
-	REMOVE = '[Tasks] Remove',
-	REMOVE_SUCCESS = '[Tasks] Remove success',
-	ADD = '[Tasks] Add',
-	ADD_SUCCESS = '[Tasks] Add success',
-	EDIT = '[Tasks] Edit',
-	EDIT_SUCCESS = '[Tasks] Edit success',
-	CHANGE_DISPLAY_MODE = '[Tasks] Change display mode'
+	LOAD_TASKS = '[Tasks] Load tasks',
+	LOAD_TASKS_SUCCESS = '[Tasks] Load tasks success',
+	REMOVE_TASK = '[Tasks] Remove task',
+	REMOVE_TASK_SUCCESS = '[Tasks] Remove task success',
+	ADD_TASK = '[Tasks] Add task',
+	ADD_TASK_SUCCESS = '[Tasks] Add task success',
+	EDIT_TASK = '[Tasks] Edit task',
+	EDIT_TASK_SUCCESS = '[Tasks] Edit task success',
+	CHANGE_TASKS_DISPLAY_MODE = '[Tasks] Change tasks display mode',
+	LOAD_CATEGORIES = '[Tasks] Load categories',
+	LOAD_CATEGORIES_SUCCESS = '[Tasks] Load categories success'
 }

@@ -1,30 +1,25 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { Modal } from 'src/app/enums/modal.enum';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { TaskService } from 'src/app/services/task.service';
-import { combineLatest, Observable, Subject } from 'rxjs';
-import { map, startWith, take, takeUntil, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Task } from 'src/app/models/task.model';
 import { IOption } from 'src/app/models/option.model';
-import { CategoryService } from 'src/app/services/task-category.service'
-import { isTruthy } from 'src/app/utils/rx-functions';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { TaskState } from 'src/app/store/task.reducer';
-import { AddTask } from 'src/app/store/task.actions';
+import { AddTask, LoadCategories } from 'src/app/store/task.actions';
 import { TaskStatusStage } from 'src/app/enums/task-progress.enum';
+import { getTasksCategories } from 'src/app/store/task.selector';
 
 @Component({
   selector: 'new-task-modal',
   templateUrl: './new-task-modal.component.html',
   styleUrls: ['./new-task-modal.component.scss']
 })
-export class NewTaskModalComponent implements OnInit, OnDestroy {
-  private destroy$: Subject<boolean> = new Subject<boolean>();
+export class NewTaskModalComponent implements OnInit {
   public modalIdentifier: Modal = Modal.NewTask;
   public addNewTaskForm: FormGroup;
-  public taskInitialCategory$: Observable<IOption[]>;
-  public taskCategories$: Observable<IOption[]> = this.getTaskCategoriesData();
+  public taskCategories$: Observable<IOption[]> = this.store.pipe(select(getTasksCategories));
   public hasSubmittedForm: boolean = false;
   public isNewTaskAdded: boolean = false;
 
@@ -32,7 +27,6 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
     private readonly formBuilder: FormBuilder,
     private readonly store: Store<TaskState>,
     private readonly modal: NgxSmartModalService,
-    private readonly taskCategoryService: CategoryService
   ) { }
 
   ngOnInit(): void {
@@ -45,10 +39,7 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
       important: [null, [Validators.required]]
     });
 
-    // this.taskService
-    //   .getNewTaskCategories()
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe((categories: IOption[]) => this.taskCategoryService.initialCategories$.next(categories));
+    this.store.dispatch((LoadCategories()));
   }
 
   public submitCreateNewTask(): void {
@@ -88,18 +79,5 @@ export class NewTaskModalComponent implements OnInit, OnDestroy {
     this.addNewTaskForm.reset();
     this.hasSubmittedForm = false;
     this.isNewTaskAdded = false;
-  }
-
-  public getTaskCategoriesData(): Observable<IOption[]> {
-    return combineLatest(([
-      this.taskCategoryService.initialCategories$.pipe(startWith([])),
-      this.taskCategoryService.addedCategory$.pipe(isTruthy(), startWith([]))
-    ]))
-    .pipe(map(([initial, added]: [IOption[], IOption | IOption[]]) => initial.concat(added)));
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
   }
 }
