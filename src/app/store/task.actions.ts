@@ -33,12 +33,12 @@ export const AddTaskSuccess = createAction(
 
 export const EditTaskStage = createAction(
 	TaskActionTypes.EDIT_TASK,
-	props<{ id: number, stage: TaskStatusStage }>()
+	props<{ id: number; stage: TaskStatusStage }>()
 );
 
 export const EditTaskStageSuccess = createAction(
 	TaskActionTypes.EDIT_TASK_SUCCESS,
-	props<{ id: number, stage: TaskStatusStage }>()
+	props<{ id: number; stage: TaskStatusStage }>()
 );
 
 export const ShowTasksByStage = createAction(

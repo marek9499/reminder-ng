@@ -8,12 +8,15 @@
 		[id]="identifier ? identifier : ''"
 		[placeholder]="placeholder"
 		[ngClass]="{
-			'iconspace': icon != null,
-			'field': true,
-			'input': true,
-			'correct': (ngControl.valid && (ngControl.touched || ngControl.dirty)),
-			'invalid': ((ngControl.invalid && ngControl.touched) || (isFormSubmitted === true && ngControl.invalid))
-		}" />
+			iconspace: icon != null,
+			field: true,
+			input: true,
+			correct: ngControl.valid && (ngControl.touched || ngControl.dirty),
+			invalid:
+				(ngControl.invalid && ngControl.touched) ||
+				(isFormSubmitted === true && ngControl.invalid)
+		}"
+	/>
 	<fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
 </ng-container>
 
@@ -26,11 +29,14 @@
 		[id]="identifier ? identifier : ''"
 		[placeholder]="placeholder"
 		[ngClass]="{
-			'field': true,
-			'textarea': true,
-			'correct': (ngControl.valid && (ngControl.touched || ngControl.dirty)),
-			'invalid': ((ngControl.invalid && ngControl.touched) || (isFormSubmitted === true && ngControl.invalid))
-		}">
+			field: true,
+			textarea: true,
+			correct: ngControl.valid && (ngControl.touched || ngControl.dirty),
+			invalid:
+				(ngControl.invalid && ngControl.touched) ||
+				(isFormSubmitted === true && ngControl.invalid)
+		}"
+	>
 	</textarea>
 </ng-container>
 
@@ -42,21 +48,25 @@
 		[ngxTimepicker]="timePicker"
 		[format]="24"
 		[ngClass]="{
-			'field': true,
-			'date': true,
-			'correct': ((ngControl.touched || ngControl.dirty)),
-			'invalid': ngControl.invalid && ngControl.touched
-		}">
+			field: true,
+			date: true,
+			correct: ngControl.touched || ngControl.dirty,
+			invalid: ngControl.invalid && ngControl.touched
+		}"
+	/>
 	<ngx-material-timepicker
 		#timePicker
-		(timeChanged)="ngControl.control?.markAsTouched(); writeInputData($event);">
+		(timeChanged)="
+			ngControl.control?.markAsTouched(); writeInputData($event)
+		"
+	>
 	</ngx-material-timepicker>
 </ng-container>
 
 <ng-container *ngIf="type === 'select'">
 	<mat-form-field appearance="fill">
 		<mat-label>Choose category</mat-label>
-		<mat-select (selectionChange)="writeInputData($event.value);">
+		<mat-select (selectionChange)="writeInputData($event.value)">
 			<mat-option *ngFor="let option of options" [value]="option.value">
 				{{ option.name }}
 			</mat-option>
@@ -65,8 +75,15 @@
 </ng-container>
 
 <ng-container *ngIf="type === 'radio'">
-	<mat-radio-group class="mat-radio-group" (change)="writeInputData($event.value)">
-		<mat-radio-button class="mat-radio-button" [value]="true">Yes</mat-radio-button>
-		<mat-radio-button class="mat-radio-button" [value]="false">No</mat-radio-button>
+	<mat-radio-group
+		class="mat-radio-group"
+		(change)="writeInputData($event.value)"
+	>
+		<mat-radio-button class="mat-radio-button" [value]="true"
+			>Yes</mat-radio-button
+		>
+		<mat-radio-button class="mat-radio-button" [value]="false"
+			>No</mat-radio-button
+		>
 	</mat-radio-group>
 </ng-container>

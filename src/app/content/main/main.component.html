@@ -1,8 +1,6 @@
 <main>
-	<ng-container *ngIf="(tasks$ | async) as tasks">
-		<app-task-item
-			*ngFor="let task of tasks"
-			[task]="task">
+	<ng-container *ngIf="tasks$ | async as tasks">
+		<app-task-item *ngFor="let task of tasks" [task]="task">
 		</app-task-item>
 	</ng-container>
 	<new-task-modal></new-task-modal>

@@ -10,7 +10,7 @@
 	//padding: 20px 20px 20px 20px;
 	margin-top: 20px;
 	margin-left: 20px;
-  border-radius: 5px;
+	border-radius: 5px;
 
 	@media only screen and (min-width: $large) {
 		width: 300px;
@@ -67,6 +67,6 @@
 
 	hr {
 		margin: 0;
-		border: .5px solid #f2f3f5;
+		border: 0.5px solid #f2f3f5;
 	}
 }

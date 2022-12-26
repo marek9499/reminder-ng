@@ -1,21 +1,23 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+	selector: "app-button",
+	templateUrl: "./button.component.html",
+	styleUrls: ["./button.component.scss"],
+	standalone: true,
+	imports: [CommonModule],
 })
 export class ButtonComponent implements OnInit {
-  @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
-  @Input() theme: string;
-  @Input() hiddenMobile: boolean = false;
+	@Output() onClick: EventEmitter<any> = new EventEmitter<any>();
+	@Input() theme: string;
+	@Input() hiddenMobile: boolean = false;
 
-  constructor() { }
+	constructor() {}
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {}
 
-  public handleClick(event: any): void {
-    this.onClick.emit(event);
-  }
+	public handleClick(event: any): void {
+		this.onClick.emit(event);
+	}
 }
