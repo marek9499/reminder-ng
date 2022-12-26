@@ -55,20 +55,32 @@ const tasksReducer = createReducer<TaskState>(
       tasks: modifiedArrayData,
     };
   }),
-  on(
-    TaskActions.ShowTasksByStage,
-    (state, action): TaskState => ({
+  on(TaskActions.ShowTasksByStage, (state, action): TaskState => {
+    return {
       ...state,
       showByStage: action.mode,
-    })
-  ),
+    };
+  }),
   on(
     TaskActions.LoadCategoriesSuccess,
     (state, action): TaskState => ({
       ...state,
       categories: action.data,
     })
-  )
+  ),
+  on(TaskActions.TogglePrioritySuccess, (state, action): TaskState => {
+    const modifiedArrayData: Task[] = [...state.tasks].map((task: Task) => {
+      if (task.id === action.id) {
+        task = { ...task, isImportant: action.priority };
+      }
+      return task;
+    });
+
+    return {
+      ...state,
+      tasks: modifiedArrayData,
+    };
+  })
 );
 
 export function reducer(state: TaskState | undefined, action: Action) {

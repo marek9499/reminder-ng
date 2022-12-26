@@ -8,6 +8,12 @@
         TaskStage.RECENT | taskStageLength | async
       }}</span>
     </li>
+    <li class="todo__item" (click)="showTasksByStage(TaskStage.HIGH_PRIORITY)">
+      High priority
+      <span class="todo__indicator">{{
+        TaskStage.HIGH_PRIORITY | taskStageLength | async
+      }}</span>
+    </li>
     <li class="todo__item" (click)="showTasksByStage(TaskStage.TODO)">
       Todo
       <span class="todo__indicator">{{

@@ -10,10 +10,14 @@ export const getRecentTasks = createSelector(
   (state: TaskState) => state.tasks
 );
 
-export const getTasksBy = (taskStatusStage: TaskStatusStage) =>
+export const getTasksBySelectedMenuType = (taskStatusStage: TaskStatusStage) =>
   createSelector(getTasksState, (state: TaskState) => {
     if (taskStatusStage === TaskStatusStage.RECENT) {
       return state.tasks;
+    }
+
+    if (taskStatusStage === TaskStatusStage.HIGH_PRIORITY) {
+      return state.tasks.filter((task: Task) => task.isImportant === true);
     }
 
     return state.tasks.filter((task: Task) => task.stage === taskStatusStage);
@@ -22,11 +26,11 @@ export const getTasksBy = (taskStatusStage: TaskStatusStage) =>
 export const getTasksByStageLength = (taskStatusStage: TaskStatusStage) =>
   createSelector(
     getTasksState,
-    getTasksBy(taskStatusStage),
+    getTasksBySelectedMenuType(taskStatusStage),
     (state: TaskState, task: Task[]) => task.length
   );
 
-export const getDisplayMode = createSelector(
+export const getSelectedMenuType = createSelector(
   getTasksState,
   (state: TaskState) => state.showByStage
 );

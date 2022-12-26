@@ -52,3 +52,13 @@ export const LoadCategoriesSuccess = createAction(
   TaskActionTypes.LOAD_CATEGORIES_SUCCESS,
   props<{ data: IOption[] }>()
 );
+
+export const TogglePriority = createAction(
+  TaskActionTypes.TOGGLE_PRIORITY,
+  props<{ id: number; priority: boolean }>()
+);
+
+export const TogglePrioritySuccess = createAction(
+  TaskActionTypes.TOGGLE_PRIORITY_SUCCESS,
+  props<{ id: number; priority: boolean }>()
+);

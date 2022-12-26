@@ -44,16 +44,29 @@ export class TaskService {
     );
   }
 
-  public markTaskStageAs(
-    taskId: number,
-    stageUpdateTo: TaskStatusStage
+  public editProperty(
+    id: number,
+    property: string,
+    value: unknown
   ): Observable<Task> {
     const updatePayload: Partial<Task> = {
-      stage: stageUpdateTo,
+      [property]: value,
     };
+
     return this.http.patch<Task>(
-      `${this.appConfiguration.apiEndpoint}/tasks/${taskId}`,
+      `${this.appConfiguration.apiEndpoint}/tasks/${id}`,
       updatePayload
     );
+  }
+
+  public editStage(
+    id: number,
+    stageDestination: TaskStatusStage
+  ): Observable<Task> {
+    return this.editProperty(id, 'stage', stageDestination);
+  }
+
+  public editPriority(id: number, priority: boolean): Observable<Task> {
+    return this.editProperty(id, 'isImportant', priority);
   }
 }

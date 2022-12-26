@@ -25,9 +25,9 @@ export class TaskEffects {
   private readonly removeTask$: Observable<any> = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskActions.RemoveTask),
-      switchMap(({ id }) => {
-        return this.taskService.deleteTask(id).pipe(map(() => id));
-      }),
+      switchMap(({ id }) =>
+        this.taskService.deleteTask(id).pipe(map(() => id))
+      ),
       map((removedTaskId: number) =>
         TaskActions.RemoveTaskSuccess({ id: removedTaskId })
       )
@@ -46,7 +46,7 @@ export class TaskEffects {
     return this.actions$.pipe(
       ofType(TaskActions.EditTaskStage),
       switchMap(({ id, stage }) => {
-        return this.taskService.markTaskStageAs(id, stage).pipe(
+        return this.taskService.editStage(id, stage).pipe(
           map((task: Task) => {
             return { taskId: task.id, stage: stage };
           })
@@ -63,6 +63,18 @@ export class TaskEffects {
       ofType(TaskActions.LoadCategories),
       switchMap(() => this.taskService.getNewTaskCategories()),
       map((data: IOption[]) => TaskActions.LoadCategoriesSuccess({ data }))
+    );
+  });
+
+  private readonly togglePriority = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskActions.TogglePriority),
+      switchMap(({ id, priority }) =>
+        this.taskService.editPriority(id, priority)
+      ),
+      map(({ id, isImportant }) =>
+        TaskActions.TogglePrioritySuccess({ id: id, priority: isImportant })
+      )
     );
   });
 }

@@ -10,4 +10,6 @@ export enum TaskActionTypes {
   CHANGE_TASKS_DISPLAY_MODE = '[Tasks] Change tasks display mode',
   LOAD_CATEGORIES = '[Tasks] Load categories',
   LOAD_CATEGORIES_SUCCESS = '[Tasks] Load categories success',
+  TOGGLE_PRIORITY = '[Tasks] Toggle priority',
+  TOGGLE_PRIORITY_SUCCESS = '[Tasks] Toggle priority success',
 }

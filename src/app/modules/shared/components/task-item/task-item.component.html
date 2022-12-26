@@ -49,14 +49,14 @@
   <hr />
 
   <div class="task__footer">
-    <fa-icon
-      [icon]="isImportantTaskIcon ? faFlag : faFontAwesome"
-      [styles]="{ color: isImportantTaskIcon ? '#f59f00' : '#a3a2a2' }"
-    ></fa-icon>
     <div *ngIf="task.finishDay" class="task__date">
-      <fa-icon [icon]="faClock"></fa-icon> {{ finishDate }} ({{
-        finishDateDeadlineDays
-      }})
+      <fa-icon [icon]="faClock"></fa-icon>
+      {{ finishDate }}
     </div>
+    <fa-icon
+      [icon]="task.isImportant ? faFlag : faFontAwesome"
+      [styles]="{ color: task.isImportant ? '#f59f00' : '#a3a2a2' }"
+      (click)="togglePriority(task.id)"
+    ></fa-icon>
   </div>
 </div>
