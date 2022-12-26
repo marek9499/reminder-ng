@@ -1,75 +1,75 @@
 @import '../../../../../assets/breakpoints.scss';
 
 .sidebar {
-    transform: translateX(-100%);
-    width: 225px;
-    position: fixed;
-    height: 100%;
-    box-sizing: border-box;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    border-right: 1px solid #ececec;
-    background-color: white;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
+  transform: translateX(-100%);
+  width: 225px;
+  position: fixed;
+  height: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  border-right: 1px solid #ececec;
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
 
-    &__title {
-        font-size: 32px;
-        font-weight: 600;
-        padding-top: 20px;
-        padding-left: 20px;
-        display: none;
-        @media only screen and (min-width: $medium) {
-            display: inherit;
-        }
-    }
-
+  &__title {
+    font-size: 32px;
+    font-weight: 600;
+    padding-top: 20px;
+    padding-left: 20px;
+    display: none;
     @media only screen and (min-width: $medium) {
-        transform: translateX(0);
+      display: inherit;
     }
+  }
 
-    &.active {
-        transform: translateX(0);
-    }
+  @media only screen and (min-width: $medium) {
+    transform: translateX(0);
+  }
+
+  &.active {
+    transform: translateX(0);
+  }
 }
 
 .todo {
-    $parent: &;
-    &__list {
-        font-size: 18px;
-        padding-top: 40px;
-        @media only screen and (min-width: $medium) {
-            padding-top: 0;
-        }
+  $parent: &;
+  &__list {
+    font-size: 18px;
+    padding-top: 40px;
+    @media only screen and (min-width: $medium) {
+      padding-top: 0;
     }
+  }
 
-    &__item {
-        line-height: 36px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 5px 20px;
+  &__item {
+    line-height: 36px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
 
-        &:hover {
-            cursor: pointer;
-            background-color: #f9fafe;
-        }
+    &:hover {
+      cursor: pointer;
+      background-color: #f9fafe;
     }
+  }
 
-    &__wrapper {
-        margin-top: 30px;
-    }
+  &__wrapper {
+    margin-top: 30px;
+  }
 
-    &__indicator {
-        float: right;
-        font-size: 13px;
-        color: white;
-        background-color: #2367ff;
-        border-radius: 30px;
-        line-height: 13px;
-        padding: 5px 10px;
-    }
+  &__indicator {
+    float: right;
+    font-size: 13px;
+    color: white;
+    background-color: #2367ff;
+    border-radius: 30px;
+    line-height: 13px;
+    padding: 5px 10px;
+  }
 }

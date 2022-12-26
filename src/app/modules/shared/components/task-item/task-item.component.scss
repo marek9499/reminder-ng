@@ -1,72 +1,72 @@
-@import "../../../../../assets/breakpoints.scss";
+@import '../../../../../assets/breakpoints.scss';
 
 .task {
-	font-family: "Poppins", sans-serif;
-	font-weight: 300;
-	box-sizing: border-box;
-	width: 100%;
-	background-color: white;
-	height: auto;
-	//padding: 20px 20px 20px 20px;
-	margin-top: 20px;
-	margin-left: 20px;
-	border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: white;
+  height: auto;
+  //padding: 20px 20px 20px 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
 
-	@media only screen and (min-width: $large) {
-		width: 300px;
-	}
+  @media only screen and (min-width: $large) {
+    width: 300px;
+  }
 
-	&__top {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 20px 20px 0px 20px;
-	}
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 0px 20px;
+  }
 
-	&__date {
-		color: #a3a2a2;
-		font-size: 12px;
-		padding-left: 10px;
-	}
+  &__date {
+    color: #a3a2a2;
+    font-size: 12px;
+    padding-left: 10px;
+  }
 
-	&__settings {
-		color: #a3a2a2;
-		//padding: 10px;
-		&:hover {
-			cursor: pointer;
-		}
-	}
+  &__settings {
+    color: #a3a2a2;
+    //padding: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
-	&__title {
-		font-size: 24px;
-		font-weight: 500;
-	}
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+  }
 
-	&__description {
-		font-size: 15px;
-		padding: 20px;
-		line-height: 1.5;
-		white-space: pre-line;
-	}
+  &__description {
+    font-size: 15px;
+    padding: 20px;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
 
-	&__badge {
-		padding-left: 20px;
-	}
+  &__badge {
+    padding-left: 20px;
+  }
 
-	&__footer {
-		display: flex;
-		padding: 20px;
-		align-items: center;
+  &__footer {
+    display: flex;
+    padding: 20px;
+    align-items: center;
 
-		fa-icon {
-			&:hover {
-				cursor: pointer;
-			}
-		}
-	}
+    fa-icon {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 
-	hr {
-		margin: 0;
-		border: 0.5px solid #f2f3f5;
-	}
+  hr {
+    margin: 0;
+    border: 0.5px solid #f2f3f5;
+  }
 }

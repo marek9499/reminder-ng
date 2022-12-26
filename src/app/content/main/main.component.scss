@@ -1,10 +1,10 @@
-@import "../../../assets/breakpoints.scss";
+@import '../../../assets/breakpoints.scss';
 
 main {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	@media only screen and (min-width: $medium) {
-		margin-left: 225px;
-	}
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  @media only screen and (min-width: $medium) {
+    margin-left: 225px;
+  }
 }

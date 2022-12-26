@@ -5,7 +5,6 @@ import {
 	FormBuilder,
 	Validators,
 	FormControl,
-	FormsModule,
 	ReactiveFormsModule,
 } from "@angular/forms";
 import { Observable } from "rxjs";

@@ -1,75 +1,75 @@
 :host {
-	position: relative;
+  position: relative;
 }
 
 .field {
-	border: none;
-	background-color: #f7f7f7;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	color: #a3a2a2;
-	font-size: 17px;
-	font-family: "Poppins", sans-serif;
-	font-weight: 300;
-	box-sizing: border-box;
-	width: 100%;
-	padding-left: 10px;
-	border: 3px solid transparent;
+  border: none;
+  background-color: #f7f7f7;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #a3a2a2;
+  font-size: 17px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 10px;
+  border: 3px solid transparent;
 
-	&.correct {
-		border-bottom: 3px solid #4d84fe;
-	}
+  &.correct {
+    border-bottom: 3px solid #4d84fe;
+  }
 
-	&.invalid {
-		border-bottom: 3px solid red;
-	}
+  &.invalid {
+    border-bottom: 3px solid red;
+  }
 
-	&:active,
-	&:focus {
-		outline: none;
-	}
+  &:active,
+  &:focus {
+    outline: none;
+  }
 
-	&.input {
-		height: 45px;
-	}
+  &.input {
+    height: 45px;
+  }
 
-	&.date {
-		padding: 15px 10px 15px 10px;
-	}
+  &.date {
+    padding: 15px 10px 15px 10px;
+  }
 
-	&.textarea {
-		height: 90px;
-		padding-top: 5px;
-	}
+  &.textarea {
+    height: 90px;
+    padding-top: 5px;
+  }
 
-	&.iconspace {
-		padding-left: 40px;
-	}
+  &.iconspace {
+    padding-left: 40px;
+  }
 }
 
 .form {
-	&-group {
-		margin-bottom: 20px;
-	}
+  &-group {
+    margin-bottom: 20px;
+  }
 }
 
 fa-icon {
-	position: absolute;
-	left: 15px;
-	transform: translateY(-50%);
-	top: 50%;
-	color: #a3a2a2;
+  position: absolute;
+  left: 15px;
+  transform: translateY(-50%);
+  top: 50%;
+  color: #a3a2a2;
 }
 
 .mat {
-	&-radio-group {
-		display: flex;
-		flex-direction: column;
-		margin: 5px 0;
-		align-items: flex-start;
-	}
+  &-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+    align-items: flex-start;
+  }
 
-	&-radio-button {
-		margin-bottom: 5px;
-	}
+  &-radio-button {
+    margin-bottom: 5px;
+  }
 }

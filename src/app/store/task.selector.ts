@@ -10,29 +10,28 @@ export const getRecentTasks = createSelector(
   (state: TaskState) => state.tasks
 );
 
-export const getTasksBy = (taskStatusStage: TaskStatusStage) => createSelector(
-  getTasksState,
-  (state: TaskState) => {
+export const getTasksBy = (taskStatusStage: TaskStatusStage) =>
+  createSelector(getTasksState, (state: TaskState) => {
     if (taskStatusStage === TaskStatusStage.RECENT) {
       return state.tasks;
     }
 
-    return state.tasks.filter((task: Task) => task.stage === taskStatusStage)
-  }
-)
+    return state.tasks.filter((task: Task) => task.stage === taskStatusStage);
+  });
 
-export const getTasksByStageLength = (taskStatusStage: TaskStatusStage) => createSelector(
-  getTasksState,
-  getTasksBy(taskStatusStage),
-  (state: TaskState, task: Task[]) => task.length
-)
+export const getTasksByStageLength = (taskStatusStage: TaskStatusStage) =>
+  createSelector(
+    getTasksState,
+    getTasksBy(taskStatusStage),
+    (state: TaskState, task: Task[]) => task.length
+  );
 
 export const getDisplayMode = createSelector(
   getTasksState,
   (state: TaskState) => state.showByStage
-)
+);
 
 export const getTasksCategories = createSelector(
   getTasksState,
   (state: TaskState) => state.categories
-)
+);

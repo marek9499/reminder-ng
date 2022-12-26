@@ -1,3 +1,3 @@
 export interface AppConfig {
-    apiEndpoint: string;
+  apiEndpoint: string;
 }

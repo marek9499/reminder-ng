@@ -1,48 +1,62 @@
 <div class="task">
-	<div class="task__top">
-		<p class="task__title">
-			{{ task.title }}
-		</p>
+  <div class="task__top">
+    <p class="task__title">
+      {{ task.title }}
+    </p>
 
-		<div class="task__settings" [matMenuTriggerFor]="menu">
-			<fa-icon [icon]="faEllipsisV"></fa-icon>
-			<mat-menu #menu="matMenu">
-				<button mat-menu-item (click)="removeTask(task.id)">
-					<mat-icon>delete</mat-icon>
-					<span>Delete</span>
-				</button>
-				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatusStage.TODO)">
-					<mat-icon>note_add</mat-icon>
-					<span>To do</span>
-				</button>
-				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatusStage.IN_PROGRESS)">
-					<mat-icon>build</mat-icon>
-					<span>In Progress</span>
-				</button>
-				<button mat-menu-item disabled>
-					<mat-icon>edit</mat-icon>
-					<span>Edit</span>
-				</button>
-				<button mat-menu-item (click)="editTaskStage(task.id, TaskStatusStage.COMPLETED)">
-					<mat-icon>done</mat-icon>
-					<span>Completed</span>
-				</button>
-			</mat-menu>
-		</div>
-	</div>
+    <div class="task__settings" [matMenuTriggerFor]="menu">
+      <fa-icon [icon]="faEllipsisV"></fa-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="removeTask(task.id)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="editTaskStage(task.id, TaskStatusStage.TODO)"
+        >
+          <mat-icon>note_add</mat-icon>
+          <span>To do</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="editTaskStage(task.id, TaskStatusStage.IN_PROGRESS)"
+        >
+          <mat-icon>build</mat-icon>
+          <span>In Progress</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="editTaskStage(task.id, TaskStatusStage.COMPLETED)"
+        >
+          <mat-icon>done</mat-icon>
+          <span>Completed</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
 
-	<app-badge class="task__badge" [status]="task.stage"></app-badge>
+  <app-badge class="task__badge" [status]="task.stage"></app-badge>
 
-	<div class="task__description">
-		{{ task.description }}
-	</div>
+  <div class="task__description">
+    {{ task.description }}
+  </div>
 
-	<hr>
+  <hr />
 
-	<div class="task__footer">
-		<fa-icon [icon]="isImportantTaskIcon ? faFlag : faFontAwesome" [styles]="{ color: isImportantTaskIcon ? '#f59f00' : '#a3a2a2' }"></fa-icon>
-		<div *ngIf="task.finishDay" class="task__date">
-			<fa-icon [icon]="faClock"></fa-icon> {{ finishDate }} ({{ finishDateDeadlineDays }})
-		</div>
-	</div>
+  <div class="task__footer">
+    <fa-icon
+      [icon]="isImportantTaskIcon ? faFlag : faFontAwesome"
+      [styles]="{ color: isImportantTaskIcon ? '#f59f00' : '#a3a2a2' }"
+    ></fa-icon>
+    <div *ngIf="task.finishDay" class="task__date">
+      <fa-icon [icon]="faClock"></fa-icon> {{ finishDate }} ({{
+        finishDateDeadlineDays
+      }})
+    </div>
+  </div>
 </div>

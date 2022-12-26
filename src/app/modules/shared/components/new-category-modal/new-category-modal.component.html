@@ -1,16 +1,30 @@
 <ngx-smart-modal identifier="{{ modalIdentifier }}">
   <div class="modal container">
     <p class="modal title">Add new category</p>
-    <info-box *ngIf="hasCategoryAdded === true">A new category has been successfully added!</info-box>
+    <info-box *ngIf="hasCategoryAdded === true"
+      >A new category has been successfully added!</info-box
+    >
     <form [formGroup]="addNewCategoryForm">
       <div class="form__group">
-        <label for="categoryname" class="label" [class.error]="
-            (addNewCategoryForm.get('name')!.touched === true && addNewCategoryForm.get('name')!.errors) ||
-            (hasSubmittedForm === true && addNewCategoryForm.get('name')!.invalid === true)">
+        <label
+          for="categoryname"
+          class="label"
+          [class.error]="
+            (addNewCategoryForm.get('name')!.touched === true &&
+              addNewCategoryForm.get('name')!.errors) ||
+            (hasSubmittedForm === true &&
+              addNewCategoryForm.get('name')!.invalid === true)
+          "
+        >
           Name:
         </label>
-        <app-input type="input" formControlName="name" identifier="categoryname"
-          placeholder="Enter category new name...">
+        <app-input
+          type="input"
+          formControlName="name"
+          ngDefaultControl
+          identifier="categoryname"
+          placeholder="Enter category new name..."
+        >
         </app-input>
       </div>
       <div class="modal footer">

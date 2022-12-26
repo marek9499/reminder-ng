@@ -16,6 +16,12 @@ import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 	selector: "app-input",
 	templateUrl: "./input.component.html",
 	styleUrls: ["./input.component.scss"],
+	imports: [
+		CommonModule,
+		MaterialModule,
+		FontAwesomeModule,
+		NgxMaterialTimepickerModule,
+	],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -24,12 +30,6 @@ import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 		},
 	],
 	standalone: true,
-	imports: [
-		CommonModule,
-		MaterialModule,
-		FontAwesomeModule,
-		NgxMaterialTimepickerModule,
-	],
 })
 export class InputComponent implements ControlValueAccessor, OnInit {
 	@Input() type: string;
