@@ -1,87 +1,87 @@
-@import "reset-css";
-@import "assets/fonts/Poppins/poppins.scss";
-@import "~ngx-smart-modal/ngx-smart-modal";
+@import 'reset-css';
+@import 'assets/fonts/Poppins/poppins.scss';
+//@import "~ngx-smart-modal/ngx-smart-modal";
 
 body {
-	background-color: #d6d6d6;
+  background-color: #d6d6d6;
 }
 
 .mat-form-field-underline {
-	&::before {
-		height: 0px !important;
-	}
+  &::before {
+    height: 0px !important;
+  }
 }
 
 .modal {
-	font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 
-	&.container {
-		margin-top: 25px;
-	}
+  &.container {
+    margin-top: 25px;
+  }
 
-	&.title {
-		font-size: 36px;
-		font-weight: 600;
-		letter-spacing: -1px;
-		margin-bottom: 15px;
-	}
+  &.title {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+  }
 
-	&.small {
-		color: rgb(161, 161, 161);
-		font-size: 12px;
-	}
+  &.small {
+    color: rgb(161, 161, 161);
+    font-size: 12px;
+  }
 
-	&.highlight {
-		color: #4d84fe;
-		font-weight: 400;
-		position: relative;
-		z-index: 100;
-		&:hover {
-			cursor: pointer;
-		}
-	}
+  &.highlight {
+    color: #4d84fe;
+    font-weight: 400;
+    position: relative;
+    z-index: 100;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
-	&.footer {
-		$this: &;
-		display: flex;
-		justify-content: flex-end;
-	}
+  &.footer {
+    $this: &;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
 .form {
-	--gap: 20px;
-	&__group {
-		margin-bottom: 25px;
-		display: block;
-	}
+  --gap: 20px;
+  &__group {
+    margin-bottom: 25px;
+    display: block;
+  }
 
-	&__col {
-		flex-direction: row;
-		display: inline-flex;
-		flex-wrap: nowrap;
-		margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
-		width: calc(100% + var(--gap));
+  &__col {
+    flex-direction: row;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
+    width: calc(100% + var(--gap));
 
-		&--box {
-			width: 45%;
-		}
-	}
+    &--box {
+      width: 45%;
+    }
+  }
 
-	&__spacing {
-		justify-content: space-between;
-	}
+  &__spacing {
+    justify-content: space-between;
+  }
 }
 
 .label {
-	font-family: "Poppins", sans-serif;
-	font-weight: 400;
-	color: black;
-	font-size: 22px;
-	margin-bottom: 5px;
-	display: inline-block;
-	letter-spacing: -1px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: black;
+  font-size: 22px;
+  margin-bottom: 5px;
+  display: inline-block;
+  letter-spacing: -1px;
 
-	&.error {
-		color: red;
-	}
+  &.error {
+    color: red;
+  }
 }

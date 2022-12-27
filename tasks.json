@@ -8,7 +8,7 @@
       "stage": "Todo",
       "category": "hehe2",
       "updatedAt": 1672088696987,
-      "isImportant": true,
+      "isImportant": false,
       "id": 1
     },
     {
@@ -30,7 +30,7 @@
       "stage": "Completed",
       "category": "hehe2",
       "updatedAt": 1672088715177,
-      "isImportant": true,
+      "isImportant": false,
       "id": 3
     }
   ],

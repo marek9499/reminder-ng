@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/app/modules/material/material.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { parse, formatDistance, format, parseISO } from 'date-fns';
-import { TogglePriority } from '../../../../store/task.actions';
+import { TogglePriority } from '../../../store/task.actions';
 
 @Component({
   selector: 'app-task-item',

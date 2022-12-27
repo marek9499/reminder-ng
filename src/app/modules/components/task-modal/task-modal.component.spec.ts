@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewTaskModalComponent } from './new-task-modal.component';
+import { NewTaskModalComponent } from './task-modal.component';
 
 describe('NewTaskModalComponent', () => {
   let component: NewTaskModalComponent;
@@ -8,9 +8,8 @@ describe('NewTaskModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewTaskModalComponent ]
-    })
-    .compileComponents();
+      declarations: [NewTaskModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

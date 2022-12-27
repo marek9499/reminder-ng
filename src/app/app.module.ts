@@ -10,8 +10,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { TaskEffects } from './store/task.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TaskService } from './services/task.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +20,7 @@ import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgxSmartModalModule.forRoot(),
+    //NgxSmartModalModule.forRoot(),
     StoreModule.forRoot({ todoApp: reducer }),
     EffectsModule.forRoot([TaskEffects]),
     StoreDevtoolsModule.instrument({

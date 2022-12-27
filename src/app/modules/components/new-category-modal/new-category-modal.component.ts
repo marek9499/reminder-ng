@@ -13,7 +13,6 @@ import { TaskService } from 'src/app/services/task.service';
 import { CommonModule } from '@angular/common';
 import { InfoBoxComponent } from '../info-box/info-box.component';
 import { ButtonComponent } from '../button/button.component';
-import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @Component({
   selector: 'new-category-modal',
@@ -25,7 +24,6 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
     InfoBoxComponent,
     ButtonComponent,
     ReactiveFormsModule,
-    NgxSmartModalModule,
   ],
   providers: [TaskService],
 })

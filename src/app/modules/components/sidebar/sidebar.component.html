@@ -1,0 +1,16 @@
+<div class="sidebar" [class.active]="isActive$ | async">
+  <p class="sidebar__title">TodoApp</p>
+
+  <ul class="todo__list todo__wrapper">
+    <li
+      *ngFor="let tab of tabs"
+      class="todo__item"
+      (click)="showTasksByStage(tab.stage)"
+    >
+      {{ tab.name }}
+      <span class="todo__indicator">
+        {{ tab.stage | taskCount | async }}
+      </span>
+    </li>
+  </ul>
+</div>

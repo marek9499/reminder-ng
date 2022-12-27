@@ -1,6 +1,8 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
-<main *ngIf="tasks$ | async as tasks">
-  <app-task-item *ngFor="let task of tasks" [task]="task"> </app-task-item>
-  <new-task-modal></new-task-modal>
+<main *ngrxLet="tasks$ as tasks; error as error">
+  <app-task-item *ngFor="let task of tasks" [task]="task"></app-task-item>
+
+  <ng-container *ngIf="error">err! {{ error }}</ng-container>
 </main>
+<!-- <task-modal></task-modal> -->

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Task } from 'src/app/models/task.model';
 import { LoadTasks } from 'src/app/store/task.actions';
 import { TaskState } from 'src/app/store/task.reducer';
@@ -10,11 +10,12 @@ import {
 } from './../../store/task.selector';
 import { switchMap } from 'rxjs/operators';
 import { TaskStatusStage } from 'src/app/enums/task-progress.enum';
-import { TaskItemComponent } from '../../modules/shared/components/task-item/task-item.component';
+import { TaskItemComponent } from '../../modules/components/task-item/task-item.component';
 import { CommonModule } from '@angular/common';
-import { NewTaskModalComponent } from 'src/app/modules/shared/components/new-task-modal/new-task-modal.component';
-import { SidebarComponent } from 'src/app/modules/shared/components/sidebar/sidebar.component';
-import { HeaderComponent } from 'src/app/modules/shared/components/header/header.component';
+import { TaskModalComponent } from 'src/app/modules/components/task-modal/task-modal.component';
+import { SidebarComponent } from 'src/app/modules/components/sidebar/sidebar.component';
+import { HeaderComponent } from 'src/app/modules/components/header/header.component';
+import { LetModule, PushModule } from '@ngrx/component';
 
 @Component({
   selector: 'app-main',
@@ -23,7 +24,8 @@ import { HeaderComponent } from 'src/app/modules/shared/components/header/header
   standalone: true,
   imports: [
     CommonModule,
-    NewTaskModalComponent,
+    LetModule,
+    TaskModalComponent,
     TaskItemComponent,
     SidebarComponent,
     HeaderComponent,
