@@ -19,7 +19,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     CommonModule,
     MaterialModule,
     FontAwesomeModule,
-    NgxMaterialTimepickerModule,
+    //NgxMaterialTimepickerModule,
   ],
   providers: [
     {
